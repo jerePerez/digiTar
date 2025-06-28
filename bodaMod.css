@@ -1,0 +1,12 @@
+body {
+    font-family: 'Plus Jakarta Sans', 'Noto Sans', sans-serif;
+}
+
+.btn-pink {
+    background-color: #ef427c;
+    border: none;
+}
+
+.btn-pink:hover {
+    background-color: #d7366b;
+}
