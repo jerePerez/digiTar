@@ -12,90 +12,14 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Outfit:wght@100..900&display=swap"
         rel="stylesheet">
-    <style>
-        /* Custom Styles */
-        :root {
-            --primary: #e91e63;
-            --secondary: #f8bbd0;
-        }
+    <!-- AOS CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
-        body {
-            font-family: "Nunito Sans";
-        }
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        header.hero {
-            background: url('https://images.unsplash.com/photo-1600425608635-1675908df836?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat;
-            color: #fff;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, .6);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        header.hero h1 {
-            font-size: 3rem;
-            font-weight: 700;
-        }
-
-        header.hero h2 {
-            font-size: 1.5rem;
-            font-weight: 400;
-        }
-
-        .countdown div {
-            display: inline-block;
-            margin: 0 10px;
-            text-align: center;
-        }
-
-        section {
-            padding: 4rem 0;
-        }
-
-        .bg-light-secondary {
-            background-color: var(--secondary);
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            border: none;
-        }
-
-        footer {
-            background: #111;
-            color: #fff;
-            padding: 2rem 0;
-        }
-
-        #historia {
-            position: relative;
-            background: url("https://images.unsplash.com/photo-1613999229608-8c7f5aacf12b?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") center/cover no-repeat;
-            overflow: hidden;
-        }
-
-        #historia .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
-            /* oscurece la imagen para mejor contraste */
-            z-index: 1;
-        }
-
-        #historia .container {
-            position: relative;
-            z-index: 2;
-            background: rgba(255, 255, 255, 0.7);
-            /* opcional: fondo blanco semitransparente para el texto */
-            border-radius: 1rem;
-            padding: 2rem;
-        }
-    </style>
 </head>
 
 <body>
@@ -110,8 +34,13 @@
         </div>
     </header>
 
+    <a href="index.html" class="icono-inicio" title="Ir al inicio">
+        <img src="./images/digiTar_logo.png" alt="Inicio">
+    </a>
+
+
     <!-- Bienvenida -->
-    <section id="bienvenida" class="container text-center">
+    <section id="bienvenida" class="container text-center" data-aos="fade-up">
         <h3 class="mb-3">¡Bienvenidos!</h3>
         <p>Esto es un ejemplo, donde podrás ver las principales características que incluyen nuestras invitaciones.
 
@@ -122,8 +51,9 @@
     </section>
 
     <!-- Eventos -->
-    <section id="eventos" class="bg-light">
-        <div class="container">
+    <section id="eventos" class="bg-light" data-aos="fade-right">
+        <div class="container text-center">
+            <i class="fa-solid fa-book agenda"></i>
             <h3 class="text-center mb-5">Agenda</h3>
             <div class="row g-4">
                 <div class="col-md-4">
@@ -164,27 +94,29 @@
     </section>
 
     <!-- Dress Code -->
-    <section id="dress-code" class="container text-center">
+    <section id="dress-code" class="container text-center" data-aos="fade-up">
+        <i class="fa-solid fa-person-dress dress"></i>
         <h3 class="mb-3">Dress Code</h3>
         <p>Formal - Elegante. El blanco queda reservado para la novia.</p>
     </section>
 
     <!-- Regalos -->
-    <section id="regalos" class="bg-light-secondary">
+    <section id="regalos" class="bg-light-secondary" data-aos="fade-right">
         <div class="container text-center">
+            <i class="fa-solid fa-gift gift"></i>
             <h3 class="mb-3">Regalos</h3>
-            <p>Tu presencia es lo más importante para nosotros. Si además quieres hacernos un regalo, puedes ayudarnos
+            <p>Tu presencia es lo más importante para nosotros. Si además querés hacernos un regalo, podés ayudarnos
                 con nuestra luna de miel.</p>
             <h5>Cuenta Bancaria</h5>
             <p class="mb-1">Banco: Ejemplo</p>
             <p class="mb-1">Titular: Florencia y Santiago</p>
             <p class="mb-1">CBU: <span id="cbu">0001234500000000001234</span></p>
-            <button class="btn btn-primary btn-sm" onclick="copyCBU()">Copiar CBU</button>
+            <button class="btn btn-primary btn-sm" onclick="copiarCBU()">Copiar CBU</button>
         </div>
     </section>
 
     <!-- RSVP -->
-    <section id="rsvp" class="container">
+    <section id="rsvp" class="container" data-aos="fade-up">
         <h3 class="text-center mb-4">Confirmación de Asistencia</h3>
         <form action="https://formspree.io/f/yourcode" method="POST" class="row g-3">
             <div class="col-md-6">
@@ -194,13 +126,13 @@
             <div class="col-md-6">
                 <label class="form-label">Asistiré?</label>
                 <select class="form-select" name="attendance" required>
-                    <option value="" selected disabled>Selecciona una opción</option>
+                    <option value="" selected disabled>Seleccioná una opción</option>
                     <option value="Si">Asistiré</option>
                     <option value="No">No asistiré</option>
                 </select>
             </div>
             <div class="col-md-6">
-                <label for="menu" class="form-label">¿Necesitas un menú especial?</label>
+                <label for="menu" class="form-label">¿Necesitás un menú especial?</label>
                 <select class="form-select" id="menu" name="menu">
                     <option>Ninguno</option>
                     <option>Celíaco</option>
@@ -220,7 +152,7 @@
     </section>
 
     <!-- Nuestra Historia -->
-    <section id="historia" class="bg-light">
+    <section id="historia" class="bg-light" data-aos="fade-right">
         <div class="container">
             <h3 class="text-center mb-4">Nuestra Historia</h3>
             <p>Dicen que todos los caminos conducen a Roma. Como los nuestros, que un día de Septiembre hace algunos
@@ -230,21 +162,25 @@
     </section>
 
     <!-- Playlist -->
-    <section id="playlist" class="container text-center">
+    <section id="playlist" class="container text-center" data-aos="fade-up">
+        <i class="fa-solid fa-music music"></i>
         <h3 class="mb-3">Nuestra Playlist</h3>
         <p>Agregá nuestra playlist y recomendá las canciones que no pueden faltar en nuestra boda.</p>
         <a href="https://open.spotify.com" target="_blank" class="btn btn-outline-primary">Abrir en Spotify</a>
     </section>
 
     <!-- Hashtag -->
-    <section id="hashtag" class="bg-light-secondary text-center">
-        <h3 class="mb-3">#NosCasamos</h3>
-        <p>Sumate a la boda compartiendo fotos y videos con nuestro hashtag.</p>
-        <a href="https://www.instagram.com" target="_blank" class="btn btn-outline-primary">Ir a Instagram</a>
+    <section id="hashtag" class="bg-light-secondary text-center" data-aos="fade-right">
+        <div class="hashtag-container text-center">
+            <h3 class="mb-3">#NosCasamos</h3>
+            <p>Sumate a la boda compartiendo fotos y videos con nuestro hashtag.</p>
+            <a href="https://www.instagram.com" target="_blank" class="btn btn-outline-primary">Ir a Instagram</a>
+        </div>
+
     </section>
 
     <!-- Quote -->
-    <section id="quote" class="container text-center">
+    <section id="quote" class="container text-center" data-aos="fade-up">
         <blockquote class="blockquote">
             <p>"La medida del amor es amar sin medida"</p>
             <footer class="blockquote-footer">San Agustín</footer>
@@ -285,14 +221,37 @@
         const timer = setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Copy CBU
-        function copyCBU() {
-            const cbu = document.getElementById('cbu').textContent;
+        // Copiar CBU
+        function copiarCBU() {
+            const cbu = "0123456789012345678901"; // tu CBU real
+
             navigator.clipboard.writeText(cbu).then(() => {
-                alert('CBU copiado al portapapeles');
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡CBU copiado!',
+                    text: 'Ya podés pegarlo donde quieras.',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            }).catch(() => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'No se pudo copiar el CBU.',
+                });
             });
         }
     </script>
+
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000, // Duración de la animación en ms
+            once: false      // La animación se reactiva al desplazar la página hacia arriba
+        });
+    </script>
+
 </body>
 
 </html>
