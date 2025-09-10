@@ -1,3 +1,73 @@
+/* Botón verde pastel para 'Cómo llegar' */
+.btn-maps {
+    display: inline-block;
+    background: #7be495;
+    color: #22613a;
+    font-weight: 700;
+    border-radius: 1.5rem;
+    padding: 0.5em 1.5em;
+    font-size: 1.1em;
+    margin-top: 0.3em;
+    margin-bottom: 0.7em;
+    box-shadow: 0 2px 8px 0 rgba(123, 228, 149, 0.10);
+    border: none;
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+}
+
+.btn-maps:hover,
+.btn-maps:focus {
+    background: #5fd68a;
+    color: #174d2b;
+    text-decoration: none;
+}
+
+/* Fade-in desde los costados para títulos y datos */
+.fade-side-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 1.2s cubic-bezier(.4, 0, .2, 1), transform 1.2s cubic-bezier(.4, 0, .2, 1);
+}
+
+.fade-side-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 1.2s cubic-bezier(.4, 0, .2, 1), transform 1.2s cubic-bezier(.4, 0, .2, 1);
+}
+
+.fade-side-left.visible,
+.fade-side-right.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Fade-in animación para secciones */
+.fade-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 2s cubic-bezier(.4, 0, .2, 1), transform 2s cubic-bezier(.4, 0, .2, 1);
+}
+
+.fade-section.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Recuadro tipo botón para títulos de detalles */
+.title-badge {
+    display: inline-block;
+    background: #f53d7a;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 1.5rem;
+    padding: 0.3em 1.2em;
+    font-size: 1.1em;
+    margin-bottom: 0.5em;
+    box-shadow: 0 2px 8px 0 rgba(245, 61, 122, 0.10);
+    letter-spacing: 0.03em;
+    border: none;
+}
+
 /* Imagen superior: mantener tamaño en desktop, adaptar en mobile */
 .bg-image {
     height: 100%;
