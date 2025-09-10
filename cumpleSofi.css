@@ -22,36 +22,6 @@
     text-decoration: none;
 }
 
-/* Fade-in desde los costados para títulos y datos */
-.fade-side-left {
-    opacity: 0;
-    transform: translateX(-60px);
-    transition: opacity 1.2s cubic-bezier(.4, 0, .2, 1), transform 1.2s cubic-bezier(.4, 0, .2, 1);
-}
-
-.fade-side-right {
-    opacity: 0;
-    transform: translateX(60px);
-    transition: opacity 1.2s cubic-bezier(.4, 0, .2, 1), transform 1.2s cubic-bezier(.4, 0, .2, 1);
-}
-
-.fade-side-left.visible,
-.fade-side-right.visible {
-    opacity: 1;
-    transform: none;
-}
-
-/* Fade-in animación para secciones */
-.fade-section {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 2s cubic-bezier(.4, 0, .2, 1), transform 2s cubic-bezier(.4, 0, .2, 1);
-}
-
-.fade-section.visible {
-    opacity: 1;
-    transform: none;
-}
 
 /* Recuadro tipo botón para títulos de detalles */
 .title-badge {
@@ -79,36 +49,46 @@
     }
 }
 
-/* Imágenes laterales decorativas */
+/* Imágenes decorativas tipo navbar sticky arriba, sobre el contenido */
 .side-img {
     position: fixed;
-    top: 30%;
+    top: 0;
     width: 100px;
     height: 100px;
     object-fit: contain;
-    z-index: 1050;
-    opacity: 0;
-    transition: opacity 0.6s, transform 0.6s;
+    z-index: 2000;
+    opacity: 1;
+    transition: none;
     pointer-events: none;
+    background: none;
 }
 
 .left-img {
-    left: 10px;
-    transform: translateX(-40px);
+    left: 0;
 }
 
 .right-img {
-    right: 10px;
-    transform: translateX(40px);
+    right: 0;
 }
 
 .side-img.show {
     opacity: 1;
-    transform: translateX(0);
+    transform: none;
+}
+
+@media (max-width: 576px) {
+    .side-img {
+        width: 100px;
+        height: 100px;
+        top: 0%;
+        /* display: block; */
+        /* display: none; */
+    }
 }
 
 body {
     background-color: #fcf8f9;
+    overflow-x: hidden;
 }
 
 /* Contenedor de cuenta regresiva */
@@ -136,6 +116,15 @@ body {
     background: linear-gradient(270deg, #fcab96, #f3f2a3);
     background-size: 800% 800%;
     animation: moverGradiente 4s ease infinite;
+    max-width: 100vw;
+    box-sizing: border-box;
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
 }
 
 @keyframes moverGradiente {
