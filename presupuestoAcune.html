@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Presupuesto Web - DigiTar</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- html2pdf.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="acune.css">
+</head>
+
+<body class="bg-light">
+
+    <!-- Botón flotante WhatsApp con imagen -->
+    <a href="https://wa.me/5491130077936?text=Hola%21%20Quisiera%20recibir%20m%C3%A1s%20informaci%C3%B3n" style="
+    position: fixed;
+    bottom: 30px;
+    right: 10px;
+    z-index: 1000;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  " target="_blank" aria-label="Contactar por WhatsApp">
+        <img src="./images/whatsapp_icon.png" alt="WhatsApp" style="width: 100%; height: 100%; object-fit: contain;" />
+    </a>
+
+    <!-- Header -->
+    <header class="bg-primary text-white text-center py-4 shadow">
+        <h1 class="h2 fw-bold">Presupuesto de Desarrollo Web</h1>
+        <p class="mb-0 fs-3">Proyecto: Acune</p>
+        <img src="./images/acune.png" alt="Logo Acune" class="my-3" style="height: 60px;">
+        <a href="index.html" class="icono-inicio" title="Ir al inicio">
+            <img src="./images/digiTar_logo.png" alt="Inicio">
+        </a>
+
+    </header>
+
+    <!-- Contenedor principal -->
+    <main class="container my-5" id="budget-content">
+        <!-- Resumen -->
+        <section class="mb-5">
+            <h2 class="h4 fw-semibold text-primary text-center mb-3">Resumen del Proyecto</h2>
+            <p class="text-center">
+                Desarrollo de un sitio web personalizado con login mediante Firebase, rutas protegidas para videos
+                exclusivos y
+                hosting en Netlify. Diseño adaptado a la marca.
+            </p>
+        </section>
+
+        <!-- Grid -->
+        <div class="row g-4 mb-5">
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h3 class="card-title h5 text-primary mb-3">Etapas</h3>
+                        <ul class="list-unstyled">
+                            <li>📐 Planificación y diseño UX/UI</li>
+                            <li>💻 Maquetación y landing personalizada</li>
+                            <li>🔐 Configuración de Firebase</li>
+                            <li>🎞️ Rutas protegidas y control de videos</li>
+                            <li>📤 Carga de contenido y pruebas</li>
+                            <li>🚀 Despliegue en Netlify</li>
+                            <li>🧪 Testing y optimización</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h3 class="card-title h5 text-primary mb-3">Costos y Plazos Estimados</h3>
+                        <ul class="list-unstyled">
+                            <li>Plazo estimado: <strong>3 a 4 semanas</strong></li>
+                            <p></p>
+
+                            <li class="fs-5 text-primary fw-bold">Total desarrollo: $ 200.000.-</li>
+                            <li>Mantenimiento mensual: <strong>$ 10.000.-</strong></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Incluye -->
+        <section class="card shadow-sm mb-5">
+            <div class="card-body">
+                <h3 class="card-title h5 text-primary mb-3">Incluye</h3>
+                <ul>
+                    <li>Diseño responsivo y personalizado.</li>
+                    <li>Integración de Firebase para autenticación segura.</li>
+                    <li>Rutas protegidas para contenido exclusivo de clientes.</li>
+                    <li>Despliegue en Netlify con certificado SSL gratuito.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Botones -->
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+            <button class="btn btn-primary px-4" onclick="generatePDF()">Descargar PDF</button>
+            <a href="https://digitar.netlify.app/" class="btn btn-outline-secondary px-4">Ir a DigiTar</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white text-center py-3 mt-5">
+        © 2025 DigiTar
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- PDF Script -->
+    <script>
+        function generatePDF() {
+            const element = document.getElementById('budget-content');
+            const opt = {
+                margin: 0.5,
+                filename: 'presupuesto_web.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+            html2pdf().from(element).set(opt).save();
+        }
+    </script>
+</body>
+
+</html>

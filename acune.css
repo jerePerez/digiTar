@@ -1,0 +1,24 @@
+.icono-inicio {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    width: 50px;
+    /* ajustá el tamaño a tu gusto */
+    height: 50px;
+    z-index: 9999;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: transparent;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
+}
+
+.icono-inicio img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.icono-inicio:hover {
+    transform: scale(1.1);
+}
