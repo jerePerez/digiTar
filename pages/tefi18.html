@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/tefi18.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <svg id="hearts" viewBox="-600 -400 1200 800" preserveAspectRatio="xMidYMid slice">
+        <defs>
+            <symbol id="heart" viewBox="-69 -16 138 138">
+                <path d="M0,12
+             C 50,-30 110,50  0,120
+             C-110,50 -50,-30 0,12z" />
+            </symbol>
+        </defs>
+    </svg>
+
+    <!-- Contenido HTML encima del fondo -->
+    <div class="content titulo">
+        <p>Te espero para festejar mis</p>
+        <h1>18</h1>
+        <h2>Estefi</h2>
+
+
+    </div>
+    <div class="content lugar">
+        <lord-icon src="https://cdn.lordicon.com/onmwuuox.json" trigger="loop" delay="1000"
+            style="width:50px;height:50px">
+        </lord-icon>
+        <h1 class="titulos">Lugar</h1>
+        <p>Quinta</p>
+    </div>
+
+    <div class="content">
+        <button class="llegar">Cómo llegar</button>
+    </div>
+
+    <div class="content horario">
+        <lord-icon src="https://cdn.lordicon.com/warimioc.json" trigger="loop" delay="1000"
+            style="width:50px;height:50px">
+        </lord-icon>
+        <h1 class="titulos">Hora</h1>
+        <p>5 PM</p>
+    </div>
+
+    <div class="content regalos">
+        <lord-icon src="https://cdn.lordicon.com/kezeezyg.json" trigger="loop" state="loop-roll"
+            style="width:50px;height:50px">
+        </lord-icon>
+        <h1 class="titulos">Regalos</h1>
+        <p>Tu presencia es lo más importante para mí.</p>
+        <p>Si además querés hacerme un regalo te cuento cómo hacerlo.</p>
+        <button type="button" class="titulos" data-bs-toggle="modal" data-bs-target="#miModal">
+            Más Información
+        </button>
+
+    </div>
+
+    <script src="tefi18.js"></script>
+
+    <div class="content">
+        <h3>Cuenta regresiva</h3>
+        <div id="countdown">
+            <div class="col">
+                <div class="count-box bg-pink">
+                    <p class="fw-bold fs-5 mb-0" id="days">0</p>
+                </div>
+                <small>Días</small>
+            </div>
+            <div class="col">
+                <div class="count-box bg-pink">
+                    <p class="fw-bold fs-5 mb-0" id="hours">0</p>
+                </div>
+                <small>Horas</small>
+            </div>
+            <div class="col">
+                <div class="count-box bg-pink">
+                    <p class="fw-bold fs-5 mb-0" id="minutes">0</p>
+                </div>
+                <small>Minutos</small>
+            </div>
+            <div class="col">
+                <div class="count-box bg-pink">
+                    <p class="fw-bold fs-5 mb-0" id="seconds">0</p>
+                </div>
+                <small>Segundos</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="carousel-container">
+        <div id="miCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="../images/tefi01.png" class="d-block w-100" alt="Imagen 1">
+                </div>
+                <div class="carousel-item">
+                    <img src="../images/tefi02.png" class="d-block w-100" alt="Imagen 2">
+                </div>
+
+            </div>
+
+            <!-- Controles -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#miCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#miCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date('2025-12-18T17:00:00');
+            const now = new Date();
+            const diff = targetDate - now;
+            if (diff > 0) {
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / (1000 * 60)) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            } else {
+                document.getElementById('days').textContent = 0;
+                document.getElementById('hours').textContent = 0;
+                document.getElementById('minutes').textContent = 0;
+                document.getElementById('seconds').textContent = 0;
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+
+    <div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <!-- Encabezado -->
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tituloModal">Título del Modal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <!-- Cuerpo -->
+                <div class="modal-body">
+                    <p>Este es el contenido del modal. Podés poner texto, imágenes, formularios o lo que necesites.
+                    </p>
+                </div>
+
+                <!-- Pie -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-success">Aceptar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+
+
+</html>
