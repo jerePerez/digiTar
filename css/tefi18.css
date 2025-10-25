@@ -198,3 +198,8 @@ button:hover {
     z-index: 9998 !important;
     /* Fondo semitransparente detrás del modal */
 }
+
+#mensajeCopiado {
+    margin-left: 10px;
+    color: #42e695;
+}

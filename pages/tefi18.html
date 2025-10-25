@@ -155,25 +155,40 @@
 
                 <!-- Encabezado -->
                 <div class="modal-header">
-                    <h5 class="modal-title" id="tituloModal">Título del Modal</h5>
+                    <h5 class="modal-title" id="tituloModal">Cuenta Bancaria</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
 
                 <!-- Cuerpo -->
                 <div class="modal-body">
-                    <p>Este es el contenido del modal. Podés poner texto, imágenes, formularios o lo que necesites.
-                    </p>
+                    <p><b>Cuenta:</b></p>
+                    <p>Mercado Pago</p>
+                    <p><b>Alias:</b></p>
+                    <p id="textoACopiar">tefi18.mp</p>
+                    <span id="mensajeCopiado"></span>
+
                 </div>
 
                 <!-- Pie -->
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-success">Aceptar</button>
+                    <button type="button" id="btnCopiar" class="btn btn-success">Copiar Alias</button>
                 </div>
 
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById('btnCopiar').addEventListener('click', function () {
+            const texto = document.getElementById('textoACopiar').innerText;
+            navigator.clipboard.writeText(texto).then(() => {
+                alert('¡Alias copiado al portapapeles!'); // Aquí aparece el alert
+            }).catch(err => {
+                alert('Error al copiar: ' + err);
+            });
+        });
+    </script>
+
 
 </body>
 
