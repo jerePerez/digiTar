@@ -1,153 +1,25 @@
+.font-serif-display {
+    font-family: 'Playfair Display', serif;
+}
+
 body {
-    margin: 0;
-    padding: 0;
-
-    height: 100%;
-    width: 100%;
-    display: flex;
-    /* 🔹 Activa Flexbox */
-    flex-direction: column;
-    justify-content: center;
-    /* 🔹 Centra horizontalmente */
-    align-items: center;
-    /* 🔹 Centra verticalmente */
-    position: relative;
-    /* 🔹 Para el z-index de los hijos */
-    font-family: 'Poppins', sans-serif;
+    min-height: max(884px, 100dvh);
 }
 
-/* SVG de corazones */
-svg {
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    /* Fondo */
-}
 
-/* Contenido centrado */
-.content {
-    z-index: 1;
-    /* Encima del SVG */
+.fondo-gradiente {
+    background: linear-gradient(135deg, #ff00cc, #8e2de2, #c471ed);
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
     color: white;
-    text-align: center;
-    padding: 20px;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    transition: background 0.5s ease;
 }
 
-.titulo {
-    padding: 50px;
-
-}
-
-.titulo h1 {
-    font-size: 6rem;
-    margin: 0;
-}
-
-.titulo p {
-    font-size: 1.5rem;
-    margin: 10px 0 0 0;
-}
-
-.titulo h2 {
-    font-family: 'Satisfy', cursive;
-    font-size: 3rem;
-    margin: 10px 0;
-}
-
-/* Botón de ejemplo */
-button {
-    background: rgba(255, 255, 255, 0.2);
-    border: 2px solid white;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-size: 1.2rem;
-    cursor: none;
-    transition: 0.3s;
-    z-index: 1;
-}
-
-button:hover {
-    background: white;
-    color: #e03776;
-}
-
-.lugar {
-    padding: 20px;
-}
-
-.lugar p {
-    font-size: 1.5rem;
-}
-
-.llegar {
-    background: rgba(19, 224, 70, 0.7);
-    border: 2px solid white;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 25px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: 0.3s;
-    z-index: 1;
-}
-
-.llegar:hover {
-    background: rgb(234, 4, 255);
-    color: #000000;
-}
-
-.horario {
-    padding: 40px;
-}
-
-.horario p {
-    font-size: 1.5rem;
-}
-
-.regalos p {
-    font-size: 1.5rem;
-}
-
-.count-box {
-    background-color: rgba(243, 178, 243, 0.7);
-    border-radius: 1rem;
-    height: 3.5rem;
-    width: 3.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#countdown {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-}
-
-
-#photoCarousel {
-    width: 50%;
-    height: 50%;
-}
-
-.titulos {
-    color: white;
-    padding: 15px 45px;
-    border-radius: 50px;
-    font-size: 1.2rem;
-    text-align: center;
-    background: linear-gradient(270deg, #ff5f6d, #ffc371, #42e695, #3bb2b8);
-    background-size: 600% 600%;
-    animation: moverFondo 6s ease infinite;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-@keyframes moverFondo {
+/* Animación del degradado */
+@keyframes gradientMove {
     0% {
         background-position: 0% 50%;
     }
@@ -161,45 +33,55 @@ button:hover {
     }
 }
 
-.carousel-container {
-    max-width: 800px;
-    /* tamaño máximo en desktop */
-    width: 90%;
-    /* ocupa el 90% en pantallas pequeñas */
-    margin: 40px auto;
-    /* centrado */
-    border-radius: 15px;
-    overflow: hidden;
-    /* redondea también las imágenes */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+:root {
+    --bs-primary: #E4007C;
+    --bs-primary-rgb: 228, 0, 124;
+    --bs-btn-padding-y: .75rem;
+    --bs-btn-padding-x: 1rem;
+    --bs-btn-font-weight: 700;
+    --bs-btn-border-radius: .5rem;
 }
 
-/* Ajustar las imágenes al contenedor */
-.carousel-item img {
-    width: 100%;
-    height: 400px;
-    /* altura fija en desktop */
-    object-fit: cover;
-    /* recorta para mantener proporción */
+.btn-primary {
+    --bs-btn-color: #ffffff;
+    --bs-btn-bg: rgba(228, 0, 124, 0.85);
+    --bs-btn-border-color: transparent;
+    --bs-btn-hover-bg: rgba(201, 0, 109, 0.9);
+    --bs-btn-hover-border-color: transparent;
+    --bs-btn-active-bg: rgba(176, 0, 95, 0.95);
+    --bs-btn-active-border-color: transparent;
+    backdrop-filter: blur(10px);
 }
 
-/* Ajuste para pantallas pequeñas */
-@media (max-width: 768px) {
-    .carousel-item img {
-        height: 250px;
+.btn-primary:active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0) translate(-50%, -50%);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(20, 20) translate(-50%, -50%);
+        opacity: 0;
     }
 }
 
-.modal {
-    z-index: 9999 !important;
-}
 
-.modal-backdrop {
-    z-index: 9998 !important;
-    /* Fondo semitransparente detrás del modal */
-}
-
-#mensajeCopiado {
-    margin-left: 10px;
-    color: #42e695;
+body {
+    min-height: max(884px, 100dvh);
 }
