@@ -1,282 +1,422 @@
 <!DOCTYPE html>
-<html class="light dark" lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Los 18 de Tefi</title>
-    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=Playfair+Display:wght@700&amp;display=swap"
-        rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/tefi18.css">
-
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#E4007C",
-                        "background-light": "#FDFDFD",
-                        "background-dark": "#22101c",
-                        "highlight": "#BFA15A",
-                        "text-light": "#333333",
-                        "text-dark": "#FDFDFD"
-                    },
-                    fontFamily: {
-                        "display": ["Plus Jakarta Sans", "sans-serif"],
-                        "serif-display": ["Playfair Display", "serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "1rem",
-                        "lg": "1.5rem",
-                        "xl": "2rem",
-                        "full": "9999px"
-                    },
-                },
-            },
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Invitación Mis 18 Años</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #E4007C;
+            --bg-dark: #121212;
         }
-    </script>
 
+        body {
+            font-family: 'Spline Sans', sans-serif;
+            background-color: var(--bg-dark);
+            color: #fff;
+            min-height: 100vh;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            position: relative;
+        }
+
+        .container-center {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 2.5rem 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .big-number {
+            position: absolute;
+            font-size: 500px;
+            color: rgba(228, 0, 124, 0.08);
+            font-weight: 800;
+            left: 50%;
+            top: 10%;
+            transform: translate(-50%, -10%);
+            pointer-events: none;
+            user-select: none;
+            line-height: 0.8;
+            z-index: 5;
+        }
+
+        .text-primary-custom {
+            color: var(--primary) !important;
+        }
+
+        .bg-primary-custom {
+            background-color: var(--primary) !important;
+        }
+
+        .backdrop-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(6px);
+            border-radius: 1rem;
+            z-index: 10;
+            position: relative;
+        }
+
+        .countdown-box {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.75rem;
+            background: rgba(255, 255, 255, 0.04);
+            z-index: 10;
+            position: relative;
+        }
+
+        .image-scroll {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 1rem;
+        }
+
+        .image-scroll img {
+            scroll-snap-align: center;
+            flex: 0 0 80%;
+            border-radius: 1rem;
+            height: 320px;
+            object-fit: cover;
+        }
+
+        .image-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .indicator {
+            height: 6px;
+            width: 24px;
+            border-radius: 999px;
+            background-color: var(--primary);
+        }
+
+        .indicator-small {
+            height: 6px;
+            width: 6px;
+            border-radius: 999px;
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-custom {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 700;
+            transition: transform .15s ease;
+            border: none;
+            z-index: 10;
+            position: relative;
+        }
+
+        .btn-custom:hover {
+            transform: scale(1.02);
+        }
+
+        .btn-custom:active {
+            transform: scale(.98);
+        }
+
+        footer .small-muted {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        h1 {
+            font-size: 70px;
+        }
+
+        .countdown {
+            padding-top: 7rem;
+        }
+
+        @media (max-width: 480px) {
+            .big-number {
+                font-size: 300px;
+                top: 0;
+                transform: translate(-50%, 10%);
+            }
+
+            .image-scroll img {
+                height: 220px;
+            }
+
+            .countdown-box {
+                height: 70px;
+            }
+        }
+
+        /* --- ESTILOS DE ESTRELLAS AÑADIDOS --- */
+
+        .star-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* Estilos para las estrellas estáticas */
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 4s infinite ease-in-out;
+            box-shadow: 0 0 2px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Estilos para las estrellas fugaces */
+        .shooting-star {
+            position: absolute;
+            width: 4px;
+            /* Aumentamos ligeramente el tamaño */
+            height: 4px;
+            /* Aumentamos ligeramente el tamaño */
+            /* ✅ MODIFICACIÓN PARA LA ESTELA SUTIL */
+            background: linear-gradient(-45deg,
+                    rgba(255, 255, 255, 0),
+                    /* Transparente al inicio de la cola */
+                    rgba(255, 255, 255, 0.8) 20%,
+                    /* Parte más brillante de la estela */
+                    rgba(255, 255, 255, 0.2) 80%,
+                    /* Parte más tenue de la estela */
+                    rgba(255, 255, 255, 0)
+                    /* Transparente al final de la cola */
+                );
+            border-radius: 50%;
+            transform: rotate(-45deg);
+            animation: shoot 5s linear infinite;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes shoot {
+            0% {
+                transform: translate(0, 0) rotate(-45deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(200vw, 200vh) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 
-<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
-    <div class="relative w-full flex flex-col group/design-root overflow-x-hidden">
-        <div class="w-full max-w-4xl mx-auto md:shadow-2xl md:my-12 md:rounded-xl md:overflow-hidden">
-            <div class="relative min-h-screen md:min-h-[600px] w-full flex flex-col justify-end bg-cover bg-center"
-                data-alt="Stylish portrait of a young woman smiling, with a soft focus background."
-                style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 40%), url("../images/tefi01.png");'>
-                <div class="flex flex-col p-8 md:p-12 text-center text-white">
-                    <p class="font-serif-display text-4xl md:text-5xl text-highlight mb-2" style="color: #E4007C;">Estás
-                        invitado a:</p>
-                    <h1 class="font-display font-extrabold text-5xl md:text-7xl tracking-tight uppercase">Los 18 de Tefi
-                    </h1>
-                    <p class="mt-4 font-light text-lg md:text-xl">El comienzo de un nuevo capítulo</p>
-                </div>
-            </div>
-            <div class="bg-background-light dark:bg-background-dark px-6 md:px-12 py-12 text-center">
-                <p class="font-display text-base md:text-lg leading-relaxed max-w-3xl mx-auto">
-                    Estás invitado a celebrar un momento importante conmigo mientras cumplo dieciocho años. Únete a mí
-                    para una noche de diversión, risas y recuerdos inolvidables. Tu presencia hará que este día sea aún
-                    más especial.
-                </p>
-            </div>
-            <div class="fondo-gradiente py-12 px-6 md:px-12">
-                <h2
-                    class="text-3xl md:text-4xl font-bold leading-tight tracking-tight text-center text-highlight font-serif-display mb-8">
-                    Cuenta Regresiva
-                </h2>
-
-                <div class="flex gap-4 max-w-xl mx-auto">
-                    <!-- DÍAS -->
-                    <div class="flex grow basis-0 flex-col items-stretch gap-2">
-                        <div
-                            class="flex h-16 md:h-24 grow items-center justify-center rounded-lg bg-white dark:bg-background-dark px-3 shadow-sm">
-                            <p id="days" class="text-text-light dark:text-text-dark text-3xl md:text-5xl font-bold"
-                                style="color: black;">00
-                            </p>
-                        </div>
-                        <div class="flex items-center justify-center">
-                            <p class="text-sm md:text-base font-normal">Días</p>
-                        </div>
-                    </div>
-
-                    <!-- HORAS -->
-                    <div class="flex grow basis-0 flex-col items-stretch gap-2">
-                        <div
-                            class="flex h-16 md:h-24 grow items-center justify-center rounded-lg bg-white dark:bg-background-dark px-3 shadow-sm">
-                            <p id="hours" class="text-text-light dark:text-text-dark text-3xl md:text-5xl font-bold"
-                                style="color: black;">00
-                            </p>
-                        </div>
-                        <div class="flex items-center justify-center">
-                            <p class="text-sm md:text-base font-normal">Horas</p>
-                        </div>
-                    </div>
-
-                    <!-- MINUTOS -->
-                    <div class="flex grow basis-0 flex-col items-stretch gap-2">
-                        <div
-                            class="flex h-16 md:h-24 grow items-center justify-center rounded-lg bg-white dark:bg-background-dark px-3 shadow-sm">
-                            <p id="minutes" class="text-text-light dark:text-text-dark text-3xl md:text-5xl font-bold"
-                                style="color: black;">
-                                00</p>
-                        </div>
-                        <div class="flex items-center justify-center">
-                            <p class="text-sm md:text-base font-normal">Minutos</p>
-                        </div>
-                    </div>
-
-                    <!-- SEGUNDOS -->
-                    <div class="flex grow basis-0 flex-col items-stretch gap-2">
-                        <div
-                            class="flex h-16 md:h-24 grow items-center justify-center rounded-lg bg-white dark:bg-background-dark px-3 shadow-sm">
-                            <p id="seconds" class="text-text-light dark:text-text-dark text-3xl md:text-5xl font-bold"
-                                style="color: black;">
-                                00</p>
-                        </div>
-                        <div class="flex items-center justify-center">
-                            <p class="text-sm md:text-base font-normal">Segundos</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bg-background-light dark:bg-background-dark py-12 px-6 md:px-12">
-                <h2
-                    class="text-3xl md:text-4xl font-bold leading-tight tracking-tight text-center text-highlight font-serif-display mb-8">
-                    Detalles del Evento</h2>
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-4xl mx-auto items-start">
-                    <div class="flex flex-col gap-4">
-                        <div
-                            class="flex items-center gap-4 bg-background-light dark:bg-background-dark p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                            <div
-                                class="text-primary flex items-center justify-center rounded-full bg-primary/10 shrink-0 size-12">
-                                <span class="material-symbols-outlined">calendar_month</span>
-                            </div>
-                            <div class="flex flex-col justify-center">
-                                <p class="text-base font-semibold leading-normal">Día &amp; Hora</p>
-                                <p class="text-sm font-normal leading-normal text-gray-600 dark:text-gray-400">Jueves,
-                                    18 de Diciembre de 2025 a las 5:00 PM</p>
-                            </div>
-                        </div>
-                        <div
-                            class="flex items-center gap-4 bg-background-light dark:bg-background-dark p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                            <div
-                                class="text-primary flex items-center justify-center rounded-full bg-primary/10 shrink-0 size-12">
-                                <span class="material-symbols-outlined">location_on</span>
-                            </div>
-                            <div class="flex flex-col justify-center">
-                                <p class="text-base font-semibold leading-normal">Ubicación</p>
-                                <p class="text-sm font-normal leading-normal text-gray-600 dark:text-gray-400">Quinta
-                                </p>
-                            </div>
-                        </div>
-                        <!-- <div
-                            class="flex items-center gap-4 bg-background-light dark:bg-background-dark p-4 rounded-lg border border-gray-200 dark:border-gray-700">
-                            <div
-                                class="text-primary flex items-center justify-center rounded-full bg-primary/10 shrink-0 size-12">
-                                <span class="material-symbols-outlined">styler</span>
-                            </div>
-                            <div class="flex flex-col justify-center">
-                                <p class="text-base font-semibold leading-normal">Dress Code</p>
-                                <p class="text-sm font-normal leading-normal text-gray-600 dark:text-gray-400">Cocktail
-                                    Attire. Shine bright!</p>
-                            </div>
-                        </div> -->
-                        <button
-                            class="w-full mt-4 flex items-center justify-center gap-2 text-primary font-bold py-3 px-4 rounded-lg border-2 border-primary hover:bg-primary/10 transition-colors">
-                            <span class="material-symbols-outlined">calendar_add_on</span> Añadir al Calendario
-                        </button>
-                    </div>
-                    <div class="rounded-lg overflow-hidden h-64 md:h-full border border-gray-200 dark:border-gray-700">
-                        <img class="w-full h-full object-cover"
-                            data-alt="A stylized map showing a pin on a city street grid." data-location="City Map"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkXW2iLakBDbBLg2Vzlx9vQUFq1jGjshIiTtIhGkDelVYpcOO5cHjDfiMJEKWK5bXtXpDPaK0PbZvKuV9luUG0Uj3YHGt1fbRMYdVBbTjTkO_ww6bk5qWrwG4TRmYZeArKxH3OItUl7ZpGZeZ76pHWoBoMP3X9NUjaLvGSaxKNrb__3CcrI0GKAEA70fRG_3XuomMKFapfddnN0ALsk2VCQjv87Alc1V0utHkxiAI1xp8R36RxFGiQHsvdFxMMg_1bfjD9bFeRWIM" />
-                    </div>
-                </div>
-            </div>
-            <div class="bg-primary/10 dark:bg-primary/20 py-12 px-6 md:px-12" id="rsvp">
-                <h2
-                    class="text-3xl md:text-4xl font-bold leading-tight tracking-tight text-center text-highlight font-serif-display mb-8">
-                    Confirm Your Attendance</h2>
-                <form class="flex flex-col gap-4 max-w-xl mx-auto">
-                    <div class="md:grid md:grid-cols-2 md:gap-4">
-                        <div>
-                            <label class="text-sm font-medium mb-1 block" for="name">Full Name</label>
-                            <input
-                                class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary dark:placeholder-gray-500"
-                                id="name" placeholder="Your Name" type="text" />
-                        </div>
-                        <div class="mt-4 md:mt-0">
-                            <label class="text-sm font-medium mb-1 block" for="guests">Number of Guests</label>
-                            <select
-                                class="w-full rounded-lg border-gray-300 dark:border-gray-600 bg-background-light dark:bg-background-dark focus:border-primary focus:ring-primary"
-                                id="guests">
-                                <option>1</option>
-                                <option>2</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="mt-4 d-grid">
-                        <button class="btn btn-primary btn-lg shadow position-relative overflow-hidden"
-                            type="submit">Confirm Attendance</button>
-                    </div>
-                </form>
-            </div>
-            <div class="bg-background-light dark:bg-background-dark py-12">
-                <h2
-                    class="text-3xl md:text-4xl font-bold leading-tight tracking-tight text-center text-highlight font-serif-display mb-8 px-6">
-                    Photo Moments</h2>
-                <div class="grid grid-cols-3 md:grid-cols-6 gap-1">
-                    <img class="w-full h-32 md:h-48 object-cover" data-alt="A portrait of a young woman laughing."
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_bZup3hLj7YRNHLenZbvB-vx_bOugXPQ7da8wtFgsfySyABIcPgJ7K40vXaytcWNi7KdGaRGDa7Sh8O9-aT1XSH2Bj2CMedDiXxNQtbN2BHnI-eW2m7vwQnvSXzwgFDzl6hUHVpwgFPlVUXDG6Xuu8dmcMvkgz7EXX5ShtC_TiqG0gr-dWg0GEGOuh3igNgUk9f42Pd0K8zZU8Z8zDY3pK7e2ucuixOGMSJAGKTaHO3qWheYAH4bUevlHQhqBW91nRsC98STRMuE" />
-                    <img class="w-full h-32 md:h-48 object-cover"
-                        data-alt="A group of friends celebrating with confetti."
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgMlkbrf4OJi4jtbaWj-XbxIzCDKcSfOifCoasKNsW4m62DQqoyNZ3pS4apXvjktWWp81OzW7Z9AmML0_I6Ri6rxsRU-gADlOIyujR_0fKIhsvGcbOPT1vfx0CSKCsmehfRfrGhF71DmDO8C2tQ-0Vjo92gHZ_smc3bB6B-lsFwiWm27Q4WpAZZJ6Xi61tdHkBH1oBWte5erwdEQuH_lXlNIRGzZe4mbuDC-FglMZT44vUMPrfQByF6flWL0O-0g7EFjYzPQDloic" />
-                    <img class="w-full h-32 md:h-48 object-cover"
-                        data-alt="A young woman blowing out candles on a birthday cake."
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW0oHWVAScZsPLdx0bq2XT-qQ8lV6WSz0NdiP45h89-8u0DnOWKzRQTHaiazrVdLKkRrhGOqtfK-B9ibsqp8tE-fYk56mqJABonDo4zEpXBgXxm6cJeELyyxdY7jVB7K--o4DioJirIlInN_3uRI_tCV67mOHE7PE6o5FjDNAilCUJFVqKM8qqB0agDVvkzhfeVmiGjG1Fgecsi3dfyWFx-kYOWHkpCUAtrzDYrhWmQEU2AwenNNazaQ9H5AmFPgvZb7t9pQ53KPE" />
-                    <img class="w-full h-32 md:h-48 object-cover" data-alt="Friends posing for a photo at a party."
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBvB7x3HTiLcWbGRtXpHuSyOPMX9fGZp9VNvlG29Jjo37Bk5_OFYxiHUZxFwb0EwZgkxj8FUS9D1GTJDPR4xF6KkpcYDXigW7L19xF9hbo6BLC8sYseYif7wKkmkl7mnr5yyPWyyHqo5VQaGRm1D2fOfNkRSzirp-URlD05StTkdIDHJKa1i7b3uCb8JW4kiIMhaIDmjGYTneJgquGyZ9waMVVztN1oP-Z0BGvkIeiHPQRZoG7cVp3CCx5cTLMYHQi0GzsyVSlGH5Q" />
-                    <img class="w-full h-32 md:h-48 object-cover" data-alt="A photo of the birthday person as a child."
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_Y8J8QrDfF8fn7ckpDyu__tvLr9ukWSieTGewH64pp4tVb1gToEk_a3igbaOkC_yTwo-ytZU-58_BfJHBHfwke5PLDb1ZxhPHAjlUhYiQ5tymT4hC6nbbbtjeq9MSQi9537-i0UO3z6ISyF7-PkpS4RBqE0NnqC_B3KI9zmcrCsDH_u2iAHHK6X1w5Him6XhWMSeQyQKzq3IdBOhI2TUL4qPFQxPpjCgrRCLl1Hp32XsSAeAw4FrmHoHBUEWvnHdNBFlEx0fQE2Q" />
-                    <img class="w-full h-32 md:h-48 object-cover"
-                        data-alt="A candid shot of the birthday person smiling."
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0di2RTW2UukvQo3-_p1N1q9V5l2H5YFXggxvgqSBJTvXrYoWeWYQnlP_nWNfKua-KUZjdK4H7dlNhyHM5IA1UsKMUzJgGkkEY3Trg2umg2vmvaisYQaiUYCw4f7XfUjPYpkh8b2RADcjVWg-0moX_i0CirqD4_BITgkT-mCfcTN81tCKp7sGCfaEVZTuS5_blO4pE7ZjMaz34597dr6Cs28eBtaXMITaiTB834eW847SubYam99y1GbRCyaiedpdNo6AXrP2KaQw" />
-                </div>
-            </div>
-            <div class="bg-primary/10 dark:bg-primary/20 py-12 px-6 md:px-12 text-center">
-                <h2
-                    class="text-3xl md:text-4xl font-bold leading-tight tracking-tight text-highlight font-serif-display mb-2">
-                    Gift Information</h2>
-                <p class="text-sm md:text-base text-gray-700 dark:text-gray-300 mb-6 max-w-2xl mx-auto">Your presence is
-                    the only present I need, but if you wish to give a gift, I am registered at the following places.
-                </p>
-                <div class="flex justify-center items-center gap-6">
-                    <a class="font-semibold text-text-light dark:text-text-dark hover:text-primary transition-colors text-lg"
-                        href="#">Wishlist Link</a>
-                </div>
-            </div>
-            <footer class="py-6 text-center bg-background-light dark:bg-background-dark">
-                <p class="text-sm text-gray-500 dark:text-gray-400">Hecho con ❤️ por <a
-                        href="https://digitar.netlify.app/" target="_blank">Digitar</a></p>
-            </footer>
-        </div>
+<body>
+    <div class="star-background" id="star-field">
     </div>
 
-    <script>document.addEventListener("DOMContentLoaded", () => {
-            // Fecha objetivo: 18 de diciembre de 2025 a las 17:00
-            const targetDate = new Date("December 18, 2025 17:00:00").getTime();
+    <div class="container-center">
+        <div class="big-number">18</div>
+        <header class="text-center mb-4">
+            <h1 class="fw-bold ">Estefi</h1>
+        </header>
+        <section class="mb-4 countdown">
+            <p class="text-center text-white-50 mb-3">Faltan</p>
+            <div class="row g-2 text-center">
+                <div class="col-3">
+                    <div class="countdown-box">
+                        <span id="days" class="fs-3 fw-bold">--</span>
+                    </div>
+                    <div class="mt-2 small text-uppercase text-primary-custom fw-bold">Días</div>
+                </div>
+                <div class="col-3">
+                    <div class="countdown-box">
+                        <span id="hours" class="fs-3 fw-bold">--</span>
+                    </div>
+                    <div class="mt-2 small text-uppercase text-primary-custom fw-bold">Horas</div>
+                </div>
+                <div class="col-3">
+                    <div class="countdown-box">
+                        <span id="minutes" class="fs-3 fw-bold">--</span>
+                    </div>
+                    <div class="mt-2 small text-uppercase text-primary-custom fw-bold">Min</div>
+                </div>
+                <div class="col-3">
+                    <div class="countdown-box">
+                        <span id="seconds" class="fs-3 fw-bold">--</span>
+                    </div>
+                    <div class="mt-2 small text-uppercase text-primary-custom fw-bold">Seg</div>
+                </div>
+            </div>
+        </section>
+        <main class="d-flex flex-column gap-3 mb-4">
+            <div class="d-flex align-items-center gap-3 backdrop-card p-3">
+                <div class="rounded-3 d-flex align-items-center justify-content-center"
+                    style="width:48px; height:48px; background: rgba(228,0,124,0.12);">
+                    <span class="material-symbols-outlined text-primary-custom fs-4">calendar_month</span>
+                </div>
+                <div>
+                    <p class="mb-0 fw-semibold">Sábado, 18 de Diciembre, 2025</p>
+                    <small class="text-white-50">Fecha</small>
+                </div>
+            </div>
+            <div class="d-flex align-items-center gap-3 backdrop-card p-3">
+                <div class="rounded-3 d-flex align-items-center justify-content-center"
+                    style="width:48px; height:48px; background: rgba(228,0,124,0.12);">
+                    <span class="material-symbols-outlined text-primary-custom fs-4">schedule</span>
+                </div>
+                <div>
+                    <p class="mb-0 fw-semibold">17:00 hs</p>
+                    <small class="text-white-50">Hora</small>
+                </div>
+            </div>
+            <div class="d-flex align-items-center gap-3 backdrop-card p-3">
+                <div class="rounded-3 d-flex align-items-center justify-content-center"
+                    style="width:48px; height:48px; background: rgba(228,0,124,0.12);">
+                    <span class="material-symbols-outlined text-primary-custom fs-4">location_on</span>
+                </div>
+                <div>
+                    <p class="mb-0 fw-semibold">Salón "Prestige", Av. Siempre Viva 123</p>
+                    <small class="text-white-50">Lugar</small>
+                </div>
+            </div>
+            <div class="d-flex align-items-center gap-3 backdrop-card p-3">
+                <div class="rounded-3 d-flex align-items-center justify-content-center"
+                    style="width:48px; height:48px; background: rgba(228,0,124,0.12);">
+                    <span class="material-symbols-outlined text-primary-custom fs-4">styler</span>
+                </div>
+                <div>
+                    <p class="mb-0 fw-semibold">Elegante Sport</p>
+                    <small class="text-white-50">Dress Code</small>
+                </div>
+            </div>
+        </main>
+        <div class="position-relative mb-4">
+            <div class="image-scroll">
+                <img src="../images/tefi01.png" alt="Foto 1">
+                <img src="../images/tefi02.png" alt="Foto 2">
+                <img src="../images/tefi01.png" alt="Foto 3">
+            </div>
+        </div>
+        <div class="mt-3 overflow-hidden rounded-3 mb-4">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1162.0676727898858!2d-58.703703911998545!3d-34.53269370532349!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcbd1756b63639%3A0xbd982c131deb34d!2sClub%20Zone!5e0!3m2!1ses-419!2sar!4v1763008006095!5m2!1ses-419!2sar"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <footer class="text-center">
+            <button
+                class="btn btn-custom w-100 py-3 mb-2 rounded-3 d-flex align-items-center justify-content-center gap-2">
+                <span class="material-symbols-outlined">check_circle</span> Confirmar Asistencia
+            </button>
+            <p class="small-muted small mb-0">Confirma antes del 20 de Noviembre</p>
+        </footer>
+    </div>
 
-            const countdown = setInterval(() => {
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        (function () {
+            // Target date: 18 December 2025 at 17:00 Argentina (UTC-3)
+            const target = new Date('2025-12-18T17:00:00-03:00').getTime();
+            const $days = document.getElementById('days');
+            const $hours = document.getElementById('hours');
+            const $minutes = document.getElementById('minutes');
+            const $seconds = document.getElementById('seconds');
+
+            function pad(n) {
+                return n.toString().padStart(2, '0');
+            }
+
+            function updateCountdown() {
                 const now = new Date().getTime();
-                const distance = targetDate - now;
+                const diff = target - now;
 
-                if (distance < 0) {
-                    clearInterval(countdown);
-                    document.querySelector("h2").textContent = "¡Llegó el gran día! 🎉";
+                if (diff <= 0) {
+                    $days.textContent = '00';
+                    $hours.textContent = '00';
+                    $minutes.textContent = '00';
+                    $seconds.textContent = '00';
                     return;
                 }
 
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-                // Actualiza los valores en pantalla
-                document.getElementById("days").textContent = days.toString().padStart(2, "0");
-                document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
-                document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
-                document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
-            }, 1000);
-        });
+                $days.textContent = days;
+                $hours.textContent = pad(hours);
+                $minutes.textContent = pad(minutes);
+                $seconds.textContent = pad(seconds);
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        })();
+
+
+        // --- CÓDIGO DE ESTRELLAS ---
+        const starField = document.getElementById('star-field');
+
+        // Función para crear estrellas estáticas
+        function createStars(count) {
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const size = Math.random() * 2 + 1;
+                star.style.width = star.style.height = `${size}px`;
+                star.style.top = `${Math.random() * 100}vh`;
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.animationDelay = `${Math.random() * 4}s`;
+                starField.appendChild(star);
+            }
+        }
+
+        // Función para crear estrellas fugaces
+        function createShootingStar() {
+            const shootingStar = document.createElement('div');
+            shootingStar.className = 'shooting-star';
+            shootingStar.style.top = `${Math.random() * 30}vh`;
+            shootingStar.style.left = `${Math.random() * 100}vw`;
+            shootingStar.style.animationDuration = `${Math.random() * 4 + 3}s`;
+            shootingStar.style.animationDelay = `${Math.random() * 15}s`;
+            starField.appendChild(shootingStar);
+
+            shootingStar.addEventListener('animationend', () => {
+                shootingStar.remove();
+                createShootingStar();
+            });
+        }
+
+        createStars(100);
+        for (let i = 0; i < 4; i++) {
+            createShootingStar();
+        }
     </script>
 </body>
 
