@@ -1,0 +1,160 @@
+/* Variables de color basadas en Tailwind */
+:root {
+    --bs-primary: #f2930d;
+    /* primary */
+    --bs-light: #f8f7f5;
+    /* background-light */
+    --bs-dark: #221b10;
+    /* background-dark */
+    --bs-body-font-family: 'Lexend', sans-serif;
+    --bs-border-radius: 1rem;
+    --bs-border-radius-xl: 3rem;
+}
+
+/* Modo Oscuro (dark:bg-background-dark) */
+[data-bs-theme="dark"] {
+    --bs-body-bg: var(--bs-dark);
+    --bs-body-color: #ffffff;
+    --bs-body-tertiary-bg: var(--bs-dark);
+    /* Fondo del body en modo oscuro */
+    --bs-body-secondary-bg: rgba(255, 255, 255, 0.05);
+    /* timer-box bg-white/5 */
+    --bs-card-bg: rgba(34, 27, 16, 0.5);
+    /* dark:bg-zinc-900/50 */
+    --bs-btn-no-bg: #495057;
+    /* bg-zinc-800 */
+    --bs-btn-no-color: #ced4da;
+    /* text-zinc-300 */
+    --bs-form-control-bg: #212529;
+    --bs-form-control-color: #ffffff;
+}
+
+/* Modo Claro (bg-background-light) */
+[data-bs-theme="light"] {
+    --bs-body-bg: var(--bs-light);
+    --bs-body-tertiary-bg: var(--bs-light);
+    --bs-body-secondary-bg: rgba(0, 0, 0, 0.05);
+    /* timer-box bg-black/5 */
+    --bs-card-bg: var(--bs-light);
+    /* bg-background-light */
+    --bs-btn-no-bg: #e9ecef;
+    /* bg-zinc-200 */
+    --bs-btn-no-color: #495057;
+    /* text-zinc-700 */
+    --bs-form-control-bg: #e9ecef;
+    --bs-form-control-color: #212529;
+}
+
+/* Resetear el borde redondeado para los cards */
+.card {
+    border-radius: var(--bs-border-radius) !important;
+}
+
+/* Aplicar la fuente Display (Lexend) a todo el cuerpo */
+body {
+    font-family: var(--bs-body-font-family);
+    min-height: 100vh;
+}
+
+/* Estilos para el Hero Section */
+.hero-bg {
+    min-height: 480px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuBMjE58VmQKRnwxMVVlOaZBDQsZ8zLACXqGnsRTqh-6TsetdMXdPCIFbawgOsd82DswHQ30Ri8LaZQbdVIBX9b0h5kO37qgP22CrLm5g-2GE59SWTKBVjfyDv5YYH7VhOVU_XoORuCn3MGtbwEnu3-gVEAqYa7-Z-3CDE_3NBbk4-qEdwP6cS5fC0F5xJizZ8BQgOHJFbzi51tgXwNElT363X8ykfU5Sih50_uzNs62jDWuH556FMnvtmOmth1ily-cdj8zzX38f5_C");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 0;
+    /* Por defecto, sin borde */
+}
+
+@media (min-width: 768px) {
+    .hero-bg {
+        border-radius: var(--bs-border-radius-xl);
+        /* Borde redondeado en pantallas medianas y grandes */
+        margin: 1rem;
+    }
+}
+
+/* Estilos específicos para los botones RSVP */
+.btn-primary {
+    --bs-btn-color: var(--bs-dark);
+    --bs-btn-bg: var(--bs-primary);
+    --bs-btn-border-color: var(--bs-primary);
+    --bs-btn-hover-bg: #d9840c;
+    /* Un tono un poco más oscuro para el hover */
+    --bs-btn-hover-border-color: #d9840c;
+    --bs-btn-active-bg: #c1750b;
+    --bs-btn-active-border-color: #c1750b;
+}
+
+.btn-yes {
+    background-color: rgba(242, 147, 13, 0.2);
+    /* primary/20 */
+    color: var(--bs-primary);
+    border: 1px solid rgba(242, 147, 13, 0.3);
+}
+
+.btn-no {
+    background-color: var(--bs-btn-no-bg);
+    color: var(--bs-btn-no-color);
+    border: 1px solid var(--bs-btn-no-color);
+}
+
+.timer-box {
+    height: 3.5rem;
+    /* Ajuste para un alto similar a h-14 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilos para las imágenes de las tarjetas (Date & Location) */
+.date-time-img,
+.location-img {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 200px;
+    /* Altura mínima para móviles */
+}
+
+.date-time-img {
+    background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDmJLscl6OPQ3niAUJhyfaKB6aXhOOpaA3htDzIcrfgT3AbBMbdcLVJFePgBV4nDABc0idES8WYejwC9jrE8DVmVtHwgH75ylqA4WHXcoxltoEm12pePozzmR94fDvoX1BMKJgQq-Xo1zDduD1-_jfnRpQIfJCpNs4G56yg8AikzbTrFe3yX8aaHxF2WpiPclrmQYbLHAAKVfFHqOmY8SENhvyYK67JSgnO0_Oo9cLSrcqSilyff8f3m-JfMwrCFlUrsfE7XBDoK71f");
+    border-top-left-radius: var(--bs-border-radius);
+    border-top-right-radius: var(--bs-border-radius);
+}
+
+.location-img {
+    background-image: url("https://placeholder.pics/svg/300");
+    border-top-left-radius: var(--bs-border-radius);
+    border-top-right-radius: var(--bs-border-radius);
+}
+
+/* Ajuste de esquinas para vistas XL */
+@media (min-width: 1200px) {
+
+    .date-time-img,
+    .location-img {
+        aspect-ratio: 4 / 3;
+        min-height: auto;
+    }
+
+    .date-time-img {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: var(--bs-border-radius);
+    }
+
+    .location-img {
+        border-top-right-radius: 0;
+        border-bottom-left-radius: var(--bs-border-radius);
+    }
+}
+
+/* Estilos para los íconos de Google Material Symbols */
+.material-symbols-outlined {
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+}
