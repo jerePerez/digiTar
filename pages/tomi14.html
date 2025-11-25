@@ -206,6 +206,39 @@
                 transform: translateY(110vh) rotate(calc(var(--rot2) * 1deg));
             }
         }
+
+        #carouselExampleAutoplaying {
+            max-height: 70vh;
+            /* altura máxima del carrusel en mobile */
+            overflow: hidden;
+        }
+
+        #carouselExampleAutoplaying img {
+            height: 70vh;
+            /* mismo alto del contenedor */
+            width: 100%;
+            object-fit: cover;
+            /* recorta pero mantiene proporción */
+        }
+
+        @media (min-width: 992px) {
+            #carouselExampleAutoplaying {
+                max-width: 700px;
+                /* Ajustá este valor a gusto */
+                margin: 0 auto;
+                /* Centrado */
+                border-radius: 16px;
+                overflow: hidden;
+                /* Para que respete corners redondeados */
+            }
+
+            #carouselExampleAutoplaying img {
+                height: 400px;
+                /* Alto fijo en desktop */
+                object-fit: cover;
+                /* Mantiene proporción */
+            }
+        }
     </style>
 </head>
 
@@ -270,11 +303,36 @@
                     restaurant
                 </span>
             </div>
-            <p class="mb-0 fw-semibold fs-4">Traer algo para compartir</p>
-            <small class="text-white-50">Comida & Bebida</small>
+            <p class="mb-0 fw-semibold fs-4">Traé ganas de pasarla bien</p>
+            <p class="mb-0 fw-semibold fs-4">y algo dulce para compartir &#x1F601;</p>
+            <small class="text-white-50">Comida</small>
         </div>
 
     </section>
+
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../images/tomi01.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="../images/tomi02.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="../images/tomi04.jpg" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
 
     <!-- Flecha scroll -->
     <div class="scroll-arrow"></div>
@@ -297,6 +355,8 @@
             confettiContainer.appendChild(piece);
         }
     </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
