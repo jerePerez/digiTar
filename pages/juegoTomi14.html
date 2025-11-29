@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basket Quiz Master</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Teko para estilo scoreboard y Roboto para texto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Teko:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --basket-orange: #fe5900;
+            --basket-black: #1a1a1a;
+            --neon-green: #39ff14;
+            --neon-red: #ff073a;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --neon-title: #66ff66;
+            /* VERDE CLARO solicitado */
+        }
+
+        body {
+            background: rgb(0, 0, 0);
+            background: linear-gradient(135deg, rgba(0, 0, 0, 1) 0%, rgba(185, 78, 9, 1) 50%, rgba(0, 0, 0, 1) 100%);
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        /* Scoreboard en la esquina superior derecha */
+        #score-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #000;
+            border: 2px solid #333;
+            border-radius: 10px;
+            padding: 10px 25px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .score-label {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: #888;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        #score-value {
+            font-family: 'Teko', sans-serif;
+            font-size: 3.5rem;
+            line-height: 1;
+            color: var(--basket-orange);
+            text-shadow: 0 0 10px rgba(254, 89, 0, 0.5);
+        }
+
+        /* Animación de punto ganado */
+        .score-pulse {
+            animation: scoreGlow 0.5s ease-in-out;
+            border-color: var(--neon-green) !important;
+        }
+
+        @keyframes scoreGlow {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 rgba(57, 255, 20, 0);
+            }
+
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 30px var(--neon-green);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 rgba(57, 255, 20, 0);
+            }
+        }
+
+        /* Contenedor principal estilo tablero */
+        .game-board {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 700px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        /* Decoración de tablero de basquet (el cuadro blanco) */
+        .board-decoration {
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .question-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Botones estilo vidrio */
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 20px;
+            font-size: 1.3rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-family: 'Teko', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-btn:hover:not(:disabled) {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-btn:disabled {
+            cursor: default;
+            opacity: 0.7;
+        }
+
+        /* Estados de respuesta */
+        .btn-correct {
+            background: rgba(57, 255, 20, 0.6) !important;
+            /* Verde Neón */
+            border-color: var(--neon-green) !important;
+            box-shadow: 0 0 20px var(--neon-green);
+            color: black !important;
+            font-weight: bold;
+        }
+
+        .btn-wrong {
+            background: rgba(255, 7, 58, 0.6) !important;
+            /* Rojo Neón */
+            border-color: var(--neon-red) !important;
+            box-shadow: 0 0 20px var(--neon-red);
+        }
+
+        /* Barra de progreso */
+        .progress-container {
+            margin-bottom: 20px;
+        }
+
+        .progress {
+            height: 6px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .progress-bar {
+            background-color: var(--basket-orange);
+            box-shadow: 0 0 10px var(--basket-orange);
+        }
+
+        /* Título TOMI 14 (Ajustado a verde claro) */
+        .main-title {
+            font-family: 'Teko', sans-serif;
+            font-size: 4rem;
+            color: var(--neon-title);
+            text-shadow: 0 0 10px var(--neon-title), 0 0 20px rgba(102, 255, 102, 0.5);
+            margin-bottom: 1rem;
+        }
+
+        /* Leaderboard */
+        .leaderboard {
+            max-height: 250px;
+            overflow-y: auto;
+            margin-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1rem;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+        }
+
+        .leaderboard-score {
+            font-family: 'Teko', sans-serif;
+            color: var(--basket-orange);
+            font-size: 1.5rem;
+        }
+
+        /* Ocultar el indicador de carga del leaderboard, ya que se carga de inmediato */
+        #loading-leaderboard {
+            display: none !important;
+        }
+
+        /* Responsividad para móviles */
+        @media (max-width: 576px) {
+            #score-container {
+                position: relative;
+                top: 0;
+                right: 0;
+                margin-bottom: 20px;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-direction: row;
+            }
+
+            .main-title {
+                font-size: 3rem;
+            }
+
+            #score-value {
+                font-size: 2.5rem;
+            }
+
+            .question-text {
+                font-size: 1.4rem;
+            }
+
+            .glass-btn {
+                padding: 15px;
+                font-size: 1.1rem;
+            }
+
+            .reset-btn {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Scoreboard (Fijo arriba a la derecha en PC, fluido en móvil) -->
+    <div id="score-container">
+        <p class="score-label">PUNTOS</p>
+        <p id="score-value">00</p>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8">
+
+                <!-- Pantalla de Inicio -->
+                <div id="start-screen" class="game-board text-center">
+                    <h1 class="main-title">TOMI 14</h1>
+                    <h2 style="font-family: 'Teko'; font-size: 3rem; color: var(--basket-orange);">BASKET QUIZ</h2>
+                    <p class="lead mb-4">Ingresa tu nombre para comenzar la revancha.</p>
+
+                    <div class="mb-3">
+                        <input type="text" id="player-name-input"
+                            class="form-control form-control-lg bg-dark text-white border-0"
+                            placeholder="Tu Nombre de Jugador" maxlength="20">
+                    </div>
+
+                    <button class="glass-btn" style="background: var(--basket-orange); border-color: transparent;"
+                        onclick="handleStartGame()">SALTAR A LA CANCHA</button>
+
+                    <!-- Botón de Reseteo del Leaderboard AÑADIDO -->
+                    <button class="btn btn-sm btn-outline-danger mt-3 reset-btn" onclick="resetLeaderboard()">RESET
+                        LÍDERES</button>
+
+                    <div class="leaderboard">
+                        <h4 class="text-start mb-2" style="color: var(--basket-orange);">TOP RIVALES</h4>
+                        <div id="leaderboard-list" class="text-start">
+                            <!-- Los scores se cargarán aquí -->
+                            <p class="text-muted text-center" id="loading-leaderboard">Cargando marcadores...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pantalla de Juego -->
+                <div id="game-screen" class="game-board d-none">
+                    <div class="board-decoration">
+                        <p class="text-start text-muted mb-3" id="current-player-name">Jugador: Cargando...</p>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-white-50">Pregunta <span id="q-current">1</span>/10</span>
+                        </div>
+
+                        <div class="progress-container">
+                            <div class="progress">
+                                <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 10%"></div>
+                            </div>
+                        </div>
+
+                        <div id="question-container">
+                            <h2 id="question-text" class="question-text">¿Pregunta?</h2>
+
+                            <div class="row g-3">
+                                <div class="col-12 col-md-6">
+                                    <button id="btn-opt1" class="glass-btn" onclick="checkAnswer(0)">Opción A</button>
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <button id="btn-opt2" class="glass-btn" onclick="checkAnswer(1)">Opción B</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="next-btn-container" class="mt-4 text-center d-none">
+                            <button class="btn btn-outline-light px-4 py-2" onclick="nextQuestion()">Siguiente
+                                Jugada</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pantalla Final -->
+                <div id="end-screen" class="game-board d-none text-center">
+                    <h2 style="font-family: 'Teko'; font-size: 3rem;">FIN DEL PARTIDO</h2>
+                    <p class="lead" id="final-player-name">Jugador: Nombre</p>
+                    <p class="lead">Tu marcador final:</p>
+                    <h1 id="final-score" style="font-size: 5rem; color: var(--basket-orange); font-family: 'Teko';">0
+                    </h1>
+                    <p id="feedback-msg" class="mb-4">Mensaje</p>
+                    <button class="glass-btn mb-3" onclick="restartGame()">Jugar Revancha</button>
+                    <button class="glass-btn" onclick="showStartScreen()">Ver Líderes</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Script de lógica del juego usando LocalStorage -->
+    <script>
+        // Configuración del juego: 40 preguntas sobre baloncesto para mayor variedad.
+        const allQuestions = [
+            // Preguntas Originales
+            { q: "¿Cuántos jugadores hay en la cancha por equipo?", options: ["5 Jugadores", "7 Jugadores"], correct: 0 },
+            { q: "¿A qué altura está el aro de la NBA?", options: ["2.95 metros", "3.05 metros"], correct: 1 },
+            { q: "¿Cuánto vale un tiro libre?", options: ["1 Punto", "2 Puntos"], correct: 0 },
+            { q: "¿Quién es conocido como 'Air Jordan'?", options: ["Michael Jordan", "Magic Johnson"], correct: 0 },
+            { q: "¿Cuánto dura la posesión de balón en la NBA?", options: ["30 segundos", "24 segundos"], correct: 1 },
+            { q: "¿Qué sucede si caminas con el balón sin rebotar?", options: ["Falta Personal", "Caminar / Pasos"], correct: 1 },
+            { q: "¿Desde qué línea vale 3 puntos un tiro?", options: ["Línea de 6.75m / 7.24m", "Línea de Tiro Libre"], correct: 0 },
+            { q: "¿Cuántos cuartos tiene un partido profesional?", options: ["2 Tiempos", "4 Cuartos"], correct: 1 },
+            { q: "¿Qué dorsal usaba Kobe Bryant (además del 8)?", options: ["24", "23"], correct: 0 },
+            { q: "¿Con cuántas faltas se expulsa en la NBA?", options: ["5 Faltas", "6 Faltas"], correct: 1 },
+
+            // Preguntas Adicionales (30)
+            { q: "¿Cuál es el equipo con más títulos de la NBA (empatado con Boston)?", options: ["Chicago Bulls", "Los Angeles Lakers"], correct: 1 },
+            { q: "¿En qué ciudad de EE. UU. se fundó la NBA (Originalmente BAA)?", options: ["Chicago", "Nueva York"], correct: 1 },
+            { q: "¿Quién tiene el récord de más puntos anotados en un solo partido (100)?", options: ["Kobe Bryant (81)", "Wilt Chamberlain (100)"], correct: 1 },
+            { q: "¿Cómo se llama la falta en la que un defensor golpea el brazo del tirador?", options: ["Falta Antideportiva", "Falta Personal"], correct: 1 },
+            { q: "¿Qué significa 'Triple Doble'?", options: ["Anotar 3 triples seguidos", "Doble dígito en 3 categorías"], correct: 1 },
+            { q: "¿Qué universidad es famosa por Michael Jordan?", options: ["Duke", "North Carolina"], correct: 1 },
+            { q: "¿Qué jugador es el líder histórico en asistencias de la NBA?", options: ["Magic Johnson", "John Stockton"], correct: 1 },
+            { q: "¿Qué posición se conoce como 'Center' o 'Pívot'?", options: ["Base (1)", "Pívot (5)"], correct: 1 },
+            { q: "¿Cuál es el límite de tiempo para pasar la mitad de la cancha?", options: ["5 segundos", "8 segundos"], correct: 1 },
+            { q: "¿Qué se sanciona cuando un jugador deja de botar y vuelve a botar?", options: ["Doble regate", "Carga"], correct: 0 },
+            { q: "¿Qué equipo juega en el Madison Square Garden?", options: ["Brooklyn Nets", "New York Knicks"], correct: 1 },
+            { q: "¿Qué jugador es conocido por su 'Skyhook'?", options: ["Shaquille O'Neal", "Kareem Abdul-Jabbar"], correct: 1 },
+            { q: "¿Quién ganó el MVP de la temporada regular 2023?", options: ["Nikola Jokic", "Joel Embiid"], correct: 1 },
+            { q: "¿En qué país se inventó el baloncesto?", options: ["Canadá", "Estados Unidos"], correct: 1 },
+            { q: "¿Quién fue el inventor del baloncesto?", options: ["George Mikan", "James Naismith"], correct: 1 },
+            { q: "¿Cuántos periodos de prórroga puede haber en la NBA?", options: ["Máximo 2", "Ilimitados"], correct: 1 },
+            { q: "¿Qué equipo ganó el primer campeonato de la NBA (BAA)?", options: ["Boston Celtics", "Philadelphia Warriors"], correct: 1 },
+            { q: "¿Qué equipo de la NBA tiene el uniforme predominantemente púrpura y amarillo?", options: ["Sacramento Kings", "Los Angeles Lakers"], correct: 1 },
+            { q: "¿Qué número usó LeBron James en Cleveland y Miami (antes del 23)?", options: ["32", "6"], correct: 1 },
+            { q: "¿Qué es un 'buzzer beater'?", options: ["Un tiro libre fallado", "Canasta sobre la bocina"], correct: 1 },
+            { q: "¿Qué deporte NO está permitido practicar en la misma cancha de baloncesto?", options: ["Volleyball", "Fútbol"], correct: 1 },
+            { q: "¿Qué se anota cuando el balón entra en el aro?", options: ["Canasta", "Tiro"], correct: 0 },
+            { q: "¿Qué jugador famoso es conocido como 'The Greek Freak'?", options: ["Luka Dončić", "Giannis Antetokounmpo"], correct: 1 },
+            { q: "¿Qué equipo es el único canadiense en la NBA?", options: ["Toronto Raptors", "Vancouver Grizzlies (Antiguo)"], correct: 0 },
+            { q: "¿Cuál es la cancha de baloncesto callejero más famosa en Nueva York?", options: ["Venice Beach", "Rucker Park"], correct: 1 },
+            { q: "¿Qué es un 'Airball'?", options: ["Tiro que entra justo", "Tiro que no toca aro ni tablero"], correct: 1 },
+            { q: "¿Qué falta se produce cuando un jugador empuja o corre hacia un oponente?", options: ["Bloqueo", "Carga"], correct: 1 },
+            { q: "¿Qué equipo fue el hogar de Larry Bird durante toda su carrera?", options: ["Boston Celtics", "Indiana Pacers"], correct: 0 },
+            { q: "¿Cuántos puntos vale una canasta dentro de la zona (cerca del aro)?", options: ["1 Punto", "2 Puntos"], correct: 1 },
+            { q: "¿Qué se debe hacer justo después de agarrar el balón si no se va a tirar?", options: ["Correr", "Botar/Regatear"], correct: 1 }
+        ];
+
+        // Variables de estado del juego
+        let currentQuestions = []; // Array de preguntas barajadas
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let canAnswer = false;
+        let currentPlayerName = '';
+
+        // Referencias al DOM
+        const scoreValEl = document.getElementById('score-value');
+        const scoreContainer = document.getElementById('score-container');
+        const questionText = document.getElementById('question-text');
+        const btn1 = document.getElementById('btn-opt1');
+        const btn2 = document.getElementById('btn-opt2');
+        const nextBtnCont = document.getElementById('next-btn-container');
+        const progressBar = document.getElementById('progress-bar');
+        const qCurrentEl = document.getElementById('q-current');
+        const startScreen = document.getElementById('start-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const endScreen = document.getElementById('end-screen');
+        const finalScoreEl = document.getElementById('final-score');
+        const feedbackMsg = document.getElementById('feedback-msg');
+        const playerNameInput = document.getElementById('player-name-input');
+        const currentPlayerNameEl = document.getElementById('current-player-name');
+        const finalPlayerNameEl = document.getElementById('final-player-name');
+        const leaderboardList = document.getElementById('leaderboard-list');
+
+        // --- FUNCIONES DE UTILIDAD Y LOCALSTORAGE ---
+
+        /**
+         * Baraja un array usando el algoritmo Fisher-Yates.
+         * @param {Array} array Array a barajar.
+         * @returns {Array} Array barajado.
+         */
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        /**
+         * Obtiene los scores guardados de localStorage.
+         * @returns {Array} Array de objetos de puntaje.
+         */
+        function getStoredScores() {
+            try {
+                const scoresJson = localStorage.getItem('basketQuizLeaderboard');
+                return scoresJson ? JSON.parse(scoresJson) : [];
+            } catch (e) {
+                console.error("Error al leer localStorage:", e);
+                return [];
+            }
+        }
+
+        /**
+         * Guarda el puntaje final del jugador en localStorage.
+         */
+        function saveScore() {
+            // Se asume que currentPlayerName ya está establecido
+            if (!currentPlayerName) return;
+
+            const scores = getStoredScores();
+
+            // Añadir el nuevo score
+            scores.push({
+                name: currentPlayerName,
+                score: score,
+                timestamp: Date.now() // Útil para desempates
+            });
+
+            // Ordenar de mayor a menor y mantener solo el top 10
+            scores.sort((a, b) => b.score - a.score);
+            const topScores = scores.slice(0, 10);
+
+            try {
+                localStorage.setItem('basketQuizLeaderboard', JSON.stringify(topScores));
+            } catch (e) {
+                console.error("Error al escribir en localStorage:", e);
+            }
+
+            // Recargar la lista de líderes para mostrar el nuevo score
+            loadLeaderboard();
+        }
+
+        /**
+         * Carga y renderiza el leaderboard desde localStorage.
+         */
+        function loadLeaderboard() {
+            const scores = getStoredScores();
+            renderLeaderboard(scores);
+        }
+
+        /**
+         * Renderiza la lista de scores en el DOM.
+         * @param {Array} scores Array de objetos de puntaje.
+         */
+        function renderLeaderboard(scores) {
+            leaderboardList.innerHTML = '';
+
+            if (scores.length === 0) {
+                leaderboardList.innerHTML = '<p class="text-muted text-center">¡Sé el primero en jugar!</p>';
+                return;
+            }
+
+            scores.forEach((item, index) => {
+                const rank = index + 1;
+                const itemEl = document.createElement('div');
+                itemEl.className = 'leaderboard-item';
+                itemEl.innerHTML = `
+                    <span class="text-white-75">${rank}. ${item.name}</span>
+                    <span class="leaderboard-score">${item.score}</span>
+                `;
+                leaderboardList.appendChild(itemEl);
+            });
+        }
+
+        /**
+         * Borra el Leaderboard de localStorage y actualiza la UI.
+         */
+        window.resetLeaderboard = function () {
+            // Reemplazamos la función alert con un mensaje de confirmación en consola y borrado directo
+            // En un entorno de producción, esto se reemplazaría por un modal personalizado de confirmación.
+            console.log("Reiniciando el Leaderboard...");
+            try {
+                localStorage.removeItem('basketQuizLeaderboard');
+                console.log("Leaderboard borrado exitosamente.");
+                loadLeaderboard(); // Recargar para mostrar la lista vacía
+            } catch (e) {
+                console.error("Error al borrar localStorage:", e);
+                alert("Error al intentar borrar el Leaderboard."); // Usamos alert solo como fallback para notificar
+            }
+        }
+
+        // --- FUNCIONES DE LÓGICA DEL JUEGO (Acceso desde el HTML) ---
+
+        /**
+         * Maneja el clic en "SALTAR A LA CANCHA"
+         */
+        window.handleStartGame = function () {
+            const name = playerNameInput.value.trim();
+            if (name.length < 2) {
+                alert("Por favor, ingresa tu nombre (mínimo 2 caracteres) para empezar.");
+                return;
+            }
+            currentPlayerName = name;
+            startGame();
+        }
+
+        /**
+         * Inicializa una nueva partida.
+         */
+        window.startGame = function () {
+            score = 0;
+            currentQuestionIndex = 0;
+            scoreValEl.innerText = "00";
+
+            // Barajar TODAS las preguntas y tomar las primeras 10
+            currentQuestions = shuffleArray([...allQuestions]).slice(0, 10);
+
+            startScreen.classList.add('d-none');
+            endScreen.classList.add('d-none');
+            gameScreen.classList.remove('d-none');
+
+            currentPlayerNameEl.innerText = `Jugador: ${currentPlayerName}`;
+
+            loadQuestion();
+        }
+
+        /**
+         * Carga la pregunta actual en la UI.
+         */
+        window.loadQuestion = function () {
+            canAnswer = true;
+            nextBtnCont.classList.add('d-none');
+
+            // Reset botones
+            btn1.className = 'glass-btn';
+            btn2.className = 'glass-btn';
+            btn1.disabled = false;
+            btn2.disabled = false;
+
+            // Cargar datos
+            const currentQ = currentQuestions[currentQuestionIndex];
+            questionText.innerText = currentQ.q;
+            btn1.innerText = currentQ.options[0];
+            btn2.innerText = currentQ.options[1];
+
+            // Actualizar UI progreso
+            qCurrentEl.innerText = currentQuestionIndex + 1;
+            const progressPercent = ((currentQuestionIndex + 1) / currentQuestions.length) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+        }
+
+        /**
+         * Verifica la respuesta seleccionada por el usuario.
+         * @param {number} selectedIndex Índice de la opción seleccionada (0 o 1).
+         */
+        window.checkAnswer = function (selectedIndex) {
+            if (!canAnswer) return;
+            canAnswer = false;
+
+            const currentQ = currentQuestions[currentQuestionIndex];
+            const correctIndex = currentQ.correct;
+
+            // Elementos de botones
+            const buttons = [btn1, btn2];
+
+            if (selectedIndex === correctIndex) {
+                // Correcto
+                buttons[selectedIndex].classList.add('btn-correct');
+                incrementScore();
+            } else {
+                // Incorrecto
+                buttons[selectedIndex].classList.add('btn-wrong');
+                // Mostrar cual era la correcta para aprender
+                buttons[correctIndex].classList.add('btn-correct');
+            }
+
+            // Deshabilitar botones para evitar doble click
+            btn1.disabled = true;
+            btn2.disabled = true;
+
+            // Mostrar botón siguiente
+            nextBtnCont.classList.remove('d-none');
+        }
+
+        /**
+         * Incrementa el puntaje y activa la animación.
+         */
+        window.incrementScore = function () {
+            score++;
+            // Formato 00
+            scoreValEl.innerText = score < 10 ? `0${score}` : score;
+
+            // Animación del borde
+            scoreContainer.classList.add('score-pulse');
+            setTimeout(() => {
+                scoreContainer.classList.remove('score-pulse');
+            }, 500);
+        }
+
+        /**
+         * Pasa a la siguiente pregunta o termina el juego.
+         */
+        window.nextQuestion = function () {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < currentQuestions.length) {
+                loadQuestion();
+            } else {
+                endGame();
+            }
+        }
+
+        /**
+         * Finaliza el juego y muestra la pantalla de resultados.
+         */
+        window.endGame = function () {
+            gameScreen.classList.add('d-none');
+            endScreen.classList.remove('d-none');
+
+            finalPlayerNameEl.innerText = `Jugador: ${currentPlayerName}`;
+            finalScoreEl.innerText = score;
+
+            // Guardar el puntaje en la base de datos local
+            saveScore();
+
+            if (score === currentQuestions.length) {
+                feedbackMsg.innerText = "¡MVP! ¡Increíble, acertaste todas!";
+            } else if (score >= currentQuestions.length * 0.7) {
+                feedbackMsg.innerText = "¡Buen partido! Tienes nivel All-Star.";
+            } else if (score >= currentQuestions.length * 0.4) {
+                feedbackMsg.innerText = "A seguir entrenando, rookie.";
+            } else {
+                feedbackMsg.innerText = "¡Airball! Mejor suerte la próxima.";
+            }
+        }
+
+        /**
+         * Muestra la pantalla de inicio (con el leaderboard).
+         */
+        window.showStartScreen = function () {
+            gameScreen.classList.add('d-none');
+            endScreen.classList.add('d-none');
+            startScreen.classList.remove('d-none');
+            // Asegurar que el score se muestre en 00 si no se está jugando
+            scoreValEl.innerText = "00";
+            loadLeaderboard(); // Asegurar que el leaderboard se actualice
+        }
+
+        /**
+         * Reinicia el juego y la pantalla de inicio.
+         */
+        window.restartGame = function () {
+            showStartScreen();
+        }
+
+        // --- INICIO DE LA APLICACIÓN ---
+        window.onload = function () {
+            // Cargar el leaderboard al cargar la página.
+            loadLeaderboard();
+        };
+
+    </script>
+</body>
+
+</html>
