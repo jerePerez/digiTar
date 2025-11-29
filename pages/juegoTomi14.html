@@ -31,6 +31,7 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
+            /* Centrado vertical en escritorio */
             justify-content: center;
             overflow-x: hidden;
         }
@@ -220,18 +221,48 @@
 
         /* Responsividad para móviles */
         @media (max-width: 576px) {
+
+            /* 1. FIX CLAVE: Forzar el apilamiento vertical de los elementos score y juego */
+            body {
+                align-items: center;
+                /* Centra horizontalmente los elementos apilados */
+                flex-direction: column;
+                /* FUERZA el apilamiento vertical: score arriba, juego abajo */
+                padding: 20px 10px;
+            }
+
+            /* 2. Scoreboard con ancho completo */
             #score-container {
                 position: relative;
-                top: 0;
-                right: 0;
+                /* Lo hace parte del flujo normal */
+                top: auto;
+                /* Anular posición fija */
+                right: auto;
                 margin-bottom: 20px;
                 width: 100%;
+                /* Ocupa el ancho completo */
+
+                /* Mantener el diseño interno del marcador */
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 flex-direction: row;
+                padding: 10px 15px;
             }
 
+            /* 3. Asegurar que el contenedor de Bootstrap use el ancho total disponible */
+            .container {
+                width: 100%;
+                padding: 0 5px;
+                /* Pequeño padding para los bordes */
+            }
+
+            .game-board {
+                max-width: 100%;
+                /* Asegura que la tarjeta del juego use el 100% del ancho del contenedor */
+            }
+
+            /* Ajustes menores de tipografía */
             .main-title {
                 font-size: 3rem;
             }
@@ -525,7 +556,8 @@
                 loadLeaderboard(); // Recargar para mostrar la lista vacía
             } catch (e) {
                 console.error("Error al borrar localStorage:", e);
-                alert("Error al intentar borrar el Leaderboard."); // Usamos alert solo como fallback para notificar
+                // Usamos la consola para notificar errores de entorno
+                console.error("Error al intentar borrar el Leaderboard.");
             }
         }
 
@@ -537,7 +569,9 @@
         window.handleStartGame = function () {
             const name = playerNameInput.value.trim();
             if (name.length < 2) {
-                alert("Por favor, ingresa tu nombre (mínimo 2 caracteres) para empezar.");
+                // Usamos la consola para errores en lugar de alert
+                console.error("Nombre de jugador muy corto. Mínimo 2 caracteres.");
+                // Podríamos añadir aquí un mensaje en la UI para el usuario
                 return;
             }
             currentPlayerName = name;
