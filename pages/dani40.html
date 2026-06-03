@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dani cumple 40 🐱</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Patrick+Hand&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sky: #4EC9E1;
+            --cloud: #ffffff;
+            --chalk-green: #2d5a27;
+            --chalk-border: #6b3a1f;
+            --chalk-text: #f5f0e8;
+            --yellow: #FED90F;
+            --red: #e63030;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--sky);
+            font-family: 'Patrick Hand', cursive;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ---- CLOUDS BACKGROUND ---- */
+        .clouds-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 50px;
+            opacity: 0.85;
+            animation: floatCloud linear infinite;
+        }
+
+        .cloud::before,
+        .cloud::after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .cloud:nth-child(1) {
+            width: 120px;
+            height: 40px;
+            top: 5%;
+            left: -130px;
+            animation-duration: 28s;
+            animation-delay: 0s;
+        }
+
+        .cloud:nth-child(2) {
+            width: 90px;
+            height: 30px;
+            top: 15%;
+            left: -100px;
+            animation-duration: 22s;
+            animation-delay: 5s;
+        }
+
+        .cloud:nth-child(3) {
+            width: 150px;
+            height: 50px;
+            top: 30%;
+            left: -160px;
+            animation-duration: 35s;
+            animation-delay: 2s;
+        }
+
+        .cloud:nth-child(4) {
+            width: 80px;
+            height: 28px;
+            top: 55%;
+            left: -90px;
+            animation-duration: 20s;
+            animation-delay: 8s;
+        }
+
+        .cloud:nth-child(5) {
+            width: 130px;
+            height: 44px;
+            top: 70%;
+            left: -140px;
+            animation-duration: 30s;
+            animation-delay: 1s;
+        }
+
+        .cloud:nth-child(6) {
+            width: 100px;
+            height: 35px;
+            top: 85%;
+            left: -110px;
+            animation-duration: 25s;
+            animation-delay: 12s;
+        }
+
+        .cloud:nth-child(7) {
+            width: 110px;
+            height: 38px;
+            top: 42%;
+            left: -120px;
+            animation-duration: 32s;
+            animation-delay: 7s;
+        }
+
+        .cloud:nth-child(8) {
+            width: 70px;
+            height: 24px;
+            top: 60%;
+            left: -80px;
+            animation-duration: 18s;
+            animation-delay: 4s;
+        }
+
+        .cloud::before {
+            width: 60%;
+            height: 150%;
+            top: -60%;
+            left: 10%;
+        }
+
+        .cloud::after {
+            width: 40%;
+            height: 130%;
+            top: -50%;
+            right: 15%;
+        }
+
+        @keyframes floatCloud {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(calc(100vw + 200px));
+            }
+        }
+
+        /* ---- MAIN WRAPPER ---- */
+        .wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px 16px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+        }
+
+        /* ---- HEADER CHARACTERS ROW ---- */
+        .char-row {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        .char-emoji {
+            font-size: clamp(2.8rem, 8vw, 3.8rem);
+            filter: drop-shadow(2px 2px 0px rgba(0, 0, 0, 0.25));
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .char-emoji:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .char-emoji:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .char-emoji:nth-child(4) {
+            animation-delay: 0.9s;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* ---- CHALKBOARD ---- */
+        .chalkboard {
+            width: 100%;
+            background: var(--chalk-green);
+            border: 8px solid var(--chalk-border);
+            border-radius: 6px;
+            padding: 24px 20px 28px;
+            text-align: center;
+            box-shadow:
+                inset 0 0 30px rgba(0, 0, 0, 0.4),
+                4px 4px 0 #3a1e0a,
+                8px 8px 0 rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .chalkboard::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 6px;
+            right: 6px;
+            bottom: 6px;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            pointer-events: none;
+        }
+
+        /* chalk texture overlay */
+        .chalkboard::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 2px;
+            background-image:
+                repeating-linear-gradient(90deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 255, 255, 0.01) 2px,
+                    rgba(255, 255, 255, 0.01) 4px);
+            pointer-events: none;
+        }
+
+        .chalk-title-small {
+            font-family: 'Bangers', cursive;
+            font-size: clamp(1rem, 4.5vw, 1.3rem);
+            color: var(--chalk-text);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
+            margin-bottom: 4px;
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .chalk-name {
+            font-family: 'Bangers', cursive;
+            font-size: clamp(3rem, 13vw, 5rem);
+            color: #fff;
+            letter-spacing: 4px;
+            line-height: 1;
+            text-shadow:
+                3px 3px 0 rgba(0, 0, 0, 0.3),
+                -1px -1px 0 rgba(255, 255, 255, 0.1);
+            animation: fadeUp 0.8s 0.2s ease both;
+            margin-bottom: 2px;
+        }
+
+        .chalk-cumple {
+            font-family: 'Bangers', cursive;
+            font-size: clamp(1.1rem, 5vw, 1.6rem);
+            color: var(--chalk-text);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            opacity: 0.88;
+            animation: fadeUp 0.8s 0.3s ease both;
+            margin-bottom: 14px;
+        }
+
+        .chalk-divider {
+            width: 80%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.25);
+            margin: 10px auto 14px;
+        }
+
+        .chalk-line {
+            font-family: 'Bangers', cursive;
+            font-size: clamp(0.95rem, 4.2vw, 1.2rem);
+            color: var(--chalk-text);
+            letter-spacing: 2px;
+            line-height: 1.7;
+            opacity: 0.92;
+        }
+
+        .chalk-line.accent {
+            color: var(--yellow);
+            font-size: clamp(1rem, 4.5vw, 1.3rem);
+        }
+
+        .chalk-line.red {
+            color: #ff6b6b;
+            font-size: clamp(1rem, 4.5vw, 1.3rem);
+            letter-spacing: 3px;
+        }
+
+        /* ---- CAT STRIP ---- */
+        .cat-strip {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: clamp(6px, 3vw, 18px);
+            padding: 10px 0 6px;
+            font-size: clamp(1.8rem, 6vw, 2.6rem);
+        }
+
+        .cat-strip span {
+            animation: sway 2.5s ease-in-out infinite;
+            display: inline-block;
+            filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.2));
+        }
+
+        .cat-strip span:nth-child(odd) {
+            animation-direction: alternate;
+        }
+
+        .cat-strip span:nth-child(even) {
+            animation-direction: alternate-reverse;
+        }
+
+        @keyframes sway {
+            0% {
+                transform: rotate(-8deg) scale(1);
+            }
+
+            100% {
+                transform: rotate(8deg) scale(1.1);
+            }
+        }
+
+        /* ---- INFO CARDS ---- */
+        .info-card {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.92);
+            border: 3px solid #1a1a1a;
+            border-radius: 8px;
+            padding: 18px 20px;
+            margin-top: 14px;
+            text-align: center;
+            box-shadow: 4px 4px 0 #1a1a1a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--yellow);
+        }
+
+        .card-icon {
+            font-size: clamp(2rem, 7vw, 2.8rem);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .card-title {
+            font-family: 'Bangers', cursive;
+            font-size: clamp(1.2rem, 5vw, 1.6rem);
+            letter-spacing: 2px;
+            color: var(--chalk-green);
+            margin-bottom: 4px;
+        }
+
+        .card-text {
+            font-family: 'Patrick Hand', cursive;
+            font-size: clamp(0.95rem, 3.8vw, 1.1rem);
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .card-text strong {
+            color: #1a1a1a;
+            font-size: clamp(1rem, 4.2vw, 1.2rem);
+        }
+
+        /* ---- MAP BUTTON ---- */
+        .map-btn {
+            display: inline-block;
+            margin-top: 10px;
+            background: var(--chalk-green);
+            color: white;
+            font-family: 'Bangers', cursive;
+            font-size: clamp(1rem, 4.2vw, 1.2rem);
+            letter-spacing: 2px;
+            padding: 8px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            border: 2px solid #1a1a1a;
+            box-shadow: 3px 3px 0 #1a1a1a;
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .map-btn:hover,
+        .map-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 #1a1a1a;
+        }
+
+        /* ---- TRAE ALGO CARD ---- */
+        .trae-card {
+            background: var(--yellow);
+            border: 3px solid #1a1a1a;
+            box-shadow: 4px 4px 0 #1a1a1a;
+        }
+
+        .trae-card::before {
+            background: var(--red);
+        }
+
+        .trae-card .card-title {
+            color: #1a1a1a;
+        }
+
+        /* ---- CONFIRM BUTTON ---- */
+        .confirm-btn {
+            width: 100%;
+            margin-top: 18px;
+            background: var(--red);
+            color: white;
+            font-family: 'Bangers', cursive;
+            font-size: clamp(1.4rem, 6vw, 2rem);
+            letter-spacing: 4px;
+            padding: 16px;
+            border: 3px solid #1a1a1a;
+            border-radius: 6px;
+            box-shadow: 5px 5px 0 #1a1a1a;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            transition: transform 0.1s, box-shadow 0.1s;
+            animation: pulse 2.5s ease-in-out infinite;
+        }
+
+        .confirm-btn:hover,
+        .confirm-btn:active {
+            transform: translate(3px, 3px);
+            box-shadow: 2px 2px 0 #1a1a1a;
+            animation: none;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        /* ---- SPOTIFY CARD ---- */
+        .spotify-card {
+            background: #191414;
+            border-color: #1DB954;
+            box-shadow: 4px 4px 0 #1DB954;
+        }
+
+        .spotify-card::before {
+            background: #1DB954;
+        }
+
+        .spotify-card .card-title {
+            color: #1DB954;
+        }
+
+        .spotify-card .card-text {
+            color: #ccc;
+        }
+
+        .spotify-placeholder {
+            border: 2px dashed #1DB954;
+            border-radius: 6px;
+            padding: 16px;
+            margin-top: 10px;
+            color: #1DB954;
+            font-family: 'Patrick Hand', cursive;
+            font-size: clamp(0.85rem, 3.5vw, 1rem);
+            opacity: 0.8;
+            text-align: center;
+        }
+
+        /* ---- FOOTER ---- */
+        .footer-cats {
+            margin-top: 24px;
+            font-size: clamp(2rem, 7vw, 3rem);
+            text-align: center;
+            letter-spacing: 6px;
+            filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.2));
+        }
+
+        .footer-text {
+            font-family: 'Bangers', cursive;
+            color: white;
+            font-size: clamp(0.85rem, 3.2vw, 1rem);
+            letter-spacing: 3px;
+            opacity: 0.7;
+            margin-top: 8px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+        }
+
+        /* ---- ANIMATIONS ---- */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .info-card {
+            animation: fadeUp 0.6s ease both;
+        }
+
+        .info-card:nth-of-type(1) {
+            animation-delay: 0.1s;
+        }
+
+        .info-card:nth-of-type(2) {
+            animation-delay: 0.2s;
+        }
+
+        .info-card:nth-of-type(3) {
+            animation-delay: 0.3s;
+        }
+
+        .info-card:nth-of-type(4) {
+            animation-delay: 0.4s;
+        }
+
+        /* ---- MODAL ---- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: white;
+            border: 4px solid #1a1a1a;
+            border-radius: 8px;
+            box-shadow: 8px 8px 0 #1a1a1a;
+            padding: 28px 24px;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            position: relative;
+            animation: fadeUp 0.3s ease;
+        }
+
+        .modal-title {
+            font-family: 'Bangers', cursive;
+            font-size: 2rem;
+            letter-spacing: 3px;
+            color: var(--chalk-green);
+            margin-bottom: 6px;
+        }
+
+        .modal-sub {
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 18px;
+        }
+
+        .modal-input {
+            width: 100%;
+            border: 2px solid #1a1a1a;
+            border-radius: 4px;
+            padding: 10px 12px;
+            font-family: 'Patrick Hand', cursive;
+            font-size: 1rem;
+            margin-bottom: 10px;
+            outline: none;
+            box-shadow: 2px 2px 0 #ccc;
+        }
+
+        .modal-input:focus {
+            border-color: var(--chalk-green);
+        }
+
+        .modal-cats-choice {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .cats-btn {
+            font-size: 1.6rem;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 50%;
+            padding: 4px;
+            transition: all 0.15s;
+            background: none;
+        }
+
+        .cats-btn.selected {
+            border-color: var(--chalk-green);
+            background: #e8f5e9;
+            transform: scale(1.2);
+        }
+
+        .modal-send {
+            width: 100%;
+            background: var(--chalk-green);
+            color: white;
+            font-family: 'Bangers', cursive;
+            font-size: 1.3rem;
+            letter-spacing: 3px;
+            padding: 12px;
+            border: 2px solid #1a1a1a;
+            border-radius: 4px;
+            box-shadow: 3px 3px 0 #1a1a1a;
+            cursor: pointer;
+            transition: transform 0.1s, box-shadow 0.1s;
+            margin-top: 4px;
+        }
+
+        .modal-send:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0 #1a1a1a;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #888;
+            background: none;
+            border: none;
+            font-family: 'Bangers', cursive;
+        }
+
+        .modal-close:hover {
+            color: var(--red);
+        }
+
+        .modal-success {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-success.active {
+            display: flex;
+        }
+
+        .modal-form.hidden {
+            display: none;
+        }
+
+        .success-emoji {
+            font-size: 3rem;
+        }
+
+        .success-text {
+            font-family: 'Bangers', cursive;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            color: var(--chalk-green);
+        }
+
+        .success-sub {
+            font-family: 'Patrick Hand', cursive;
+            color: #555;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Clouds -->
+    <div class="clouds-layer">
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+    </div>
+
+    <!-- WRAPPER -->
+    <div class="wrapper">
+
+        <!-- Top characters row -->
+        <div class="char-row">
+            <img class="char-emoji" src="../images/001.png" style="width:60px;" />
+            <img class="char-emoji" src="../images/002.png" style="width:60px;" />
+            <img class="char-emoji" src="../images/003.png" style="width:60px;" />
+            <img class="char-emoji" src="../images/004.png" style="width:60px;" />
+        </div>
+
+        <!-- CHALKBOARD -->
+        <div class="chalkboard">
+            <div class="chalk-title-small">La loca de los gatos</div>
+            <div class="chalk-name">cumple 40</div>
+            <div class="chalk-cumple">y te invita a celebrarlo</div>
+            <div class="chalk-divider"></div>
+            <img src="../images/loquita.png" alt="">
+            <!-- <div class="chalk-line">el 06/06 desde las 20:30hs</div>
+      <div class="chalk-line">hasta las 03:00hs</div>
+      <div class="chalk-line">Calle 41 2650 · Villa Maipú</div>
+      <div class="chalk-line">Polideportivo de Chaca</div>
+      <div class="chalk-divider"></div>
+      <div class="chalk-line accent">🍺 TRAE ALGO PARA TOMAR 🍺</div>
+      <div class="chalk-line red">✉ CONFIRMAR ASISTENCIA</div> -->
+        </div>
+
+        <!-- Cat strip -->
+        <div class="cat-strip">
+            <span>🐱</span>
+            <span>🐈</span>
+            <span>😼</span>
+            <span>🐈‍</span>
+            <span>😸</span>
+            <span>🐱</span>
+            <span>😹</span>
+        </div>
+
+        <!-- DATE CARD -->
+        <div class="info-card">
+            <span class="card-icon">📅</span>
+            <div class="card-title">¿Cuándo?</div>
+            <div class="card-text">
+                <strong>Sábado 6 de Junio, 2026</strong><br>
+                desde las 20:30hs hasta las 03:00hs 🌙
+            </div>
+        </div>
+
+        <!-- LOCATION CARD -->
+        <div class="info-card">
+            <span class="card-icon">📍</span>
+            <div class="card-title">¿Dónde?</div>
+            <div class="card-text">
+                <strong>Polideportivo de Chaca</strong><br>
+                Calle 41 2650, Villa Maipú
+            </div>
+            <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=Calle+41+2650+Villa+Maipu"
+                target="_blank">
+                📍 Abrir en Google Maps
+            </a>
+        </div>
+
+        <!-- TRAE ALGO CARD -->
+        <div class="info-card trae-card">
+            <span class="card-icon">🥂</span>
+            <div class="card-title">¡Trae algo para tomar!</div>
+            <div class="card-text">
+                Cada uno colabora con su bebida favorita.<br>
+                La comida corre por cuenta de los gatos 🐱
+            </div>
+        </div>
+
+        <!-- SPOTIFY CARD -->
+        <div class="info-card spotify-card">
+            <span class="card-icon">🎵</span>
+            <div class="card-title">Playlist</div>
+            <div class="card-text">¡Agregá música para la fiesta!</div>
+            <div class="spotify-placeholder">
+                <iframe data-testid="embed-iframe" style="border-radius:12px"
+                    src="https://open.spotify.com/embed/playlist/2R0Uj6cQDuphbac9aTNNu0?utm_source=generator&theme=0"
+                    width="100%" height="152" frameBorder="0" allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                    loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <!-- FOTOS CARD -->
+        <div class="info-card spotify-card">
+            <span class="card-icon">📷</span>
+            <div class="card-title">Fotos</div>
+            <div class="card-text">¡Agregá fotos de la fiesta!</div>
+            <div class="spotify-placeholder">
+                <img src="../images/fotos.PNG" alt="" width="200px">
+
+            </div>
+            <a class="card-title" href="https://www.google.com.ar" target="_blank">Ver fotos</a>
+        </div>
+
+        <!-- CONFIRM BUTTON -->
+        <a href="#" class="confirm-btn" id="openModal">
+            ✅ CONFIRMAR ASISTENCIA
+        </a>
+
+        <!-- Footer cats -->
+        <div class="char-row">
+            <img class="char-emoji" src="../images/001.png" style="width:60px;" />
+            <img class="char-emoji" src="../images/002.png" style="width:60px;" />
+            <img class="char-emoji" src="../images/003.png" style="width:60px;" />
+            <img class="char-emoji" src="../images/004.png" style="width:60px;" />
+        </div>
+        <div class="footer-text">Todo este maldito sistema está mal</div>
+
+    </div>
+
+    <!-- CONFIRMATION MODAL -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal-box">
+            <button class="modal-close" id="closeModal">✕</button>
+
+            <div class="modal-form" id="modalForm">
+                <div class="modal-title">¿Venís? 🎉</div>
+                <div class="modal-sub">Avisale a Dani que contás asistir</div>
+
+                <input class="modal-input" id="inputName" type="text" placeholder="Tu nombre" />
+                <input class="modal-input" id="inputPhone" type="tel" placeholder="Tu WhatsApp (opcional)" />
+
+                <div style="font-family:'Patrick Hand',cursive;font-size:0.9rem;color:#666;margin-bottom:8px;">
+                    ¿Cuántos van?
+                </div>
+                <div class="modal-cats-choice" id="catChoice">
+                    <button class="cats-btn" data-val="1">🐱<br><small>Solo yo</small></button>
+                    <button class="cats-btn" data-val="2">🐈🐱<br><small>2</small></button>
+                    <button class="cats-btn" data-val="3">🐱🐱🐱<br><small>3</small></button>
+                    <button class="cats-btn" data-val="4">😸😸😸😸<br><small>4+</small></button>
+                </div>
+
+                <button class="modal-send" id="sendConfirm">🐱 ¡CONFIRMO!</button>
+            </div>
+
+            <div class="modal-success" id="modalSuccess">
+                <div class="success-emoji">🥳😸🎉</div>
+                <div class="success-text">¡CONFIRMADO!</div>
+                <div class="success-sub" id="successMsg">¡Dani ya sabe que venís!</div>
+                <div class="success-sub">Nos vemos el 6 de Junio 🐱</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const modal = document.getElementById('modal');
+        const openBtn = document.getElementById('openModal');
+        const closeBtn = document.getElementById('closeModal');
+        const sendBtn = document.getElementById('sendConfirm');
+        const catBtns = document.querySelectorAll('.cats-btn');
+        const modalForm = document.getElementById('modalForm');
+        const modalSuccess = document.getElementById('modalSuccess');
+        const successMsg = document.getElementById('successMsg');
+
+        let selectedCats = 1;
+
+        openBtn.addEventListener('click', e => {
+            e.preventDefault();
+            const msg = encodeURIComponent('¡Hola Dani! Confirmo que voy a tu cumple el 6/6');
+            window.open('https://wa.me/5491133129365?text=' + msg, '_blank');
+        });
+        closeBtn.addEventListener('click', () => {
+            modal.classList.remove('active');
+            // reset
+            setTimeout(() => {
+                modalForm.classList.remove('hidden');
+                modalSuccess.classList.remove('active');
+            }, 300);
+        });
+        modal.addEventListener('click', e => {
+            if (e.target === modal) closeBtn.click();
+        });
+
+        catBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                catBtns.forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                selectedCats = btn.dataset.val;
+            });
+        });
+
+        sendBtn.addEventListener('click', () => {
+            const name = document.getElementById('inputName').value.trim();
+            const phone = document.getElementById('inputPhone').value.trim();
+            if (!name) {
+                document.getElementById('inputName').style.borderColor = '#e63030';
+                document.getElementById('inputName').placeholder = 'Escribí tu nombre ✏️';
+                return;
+            }
+
+            // Build WhatsApp message for Dani
+            const msg = encodeURIComponent(
+                `¡Hola Dani! 🥳 Soy ${name} y confirmo que voy a tu cumple el 6/6 🎉🐱 Vamos ${selectedCats} persona(s).${phone ? ' Mi WhatsApp: ' + phone : ''}`
+            );
+            // Open WhatsApp - replace with Dani's number
+            window.open(`https://wa.me/?text=${msg}`, '_blank');
+
+            modalForm.classList.add('hidden');
+            successMsg.textContent = `¡${name}, Dani ya sabe que venís! 🎉`;
+            modalSuccess.classList.add('active');
+        });
+    </script>
+</body>
+
+</html>
