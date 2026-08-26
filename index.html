@@ -101,6 +101,29 @@
                 scroll-margin-top: 154px;
             }
         }
+
+        /* Modal de selección de modelos */
+        .modelo-card {
+            border: 1px solid #dee2e6;
+            border-radius: 1rem;
+            overflow: hidden;
+            text-decoration: none;
+            display: block;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            color: inherit;
+        }
+
+        .modelo-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            color: inherit;
+        }
+
+        .modelo-img {
+            aspect-ratio: 3/4;
+            background-size: cover;
+            background-position: center;
+        }
     </style>
 </head>
 
@@ -159,11 +182,57 @@
             <h1 class="display-5 fw-bold">Invitaciones digitales para todo tipo de celebraciones</h1>
             <p class="lead mt-2">Interactivas, animadas, originales y con mucho estilo</p>
             <div class="d-flex flex-wrap gap-3 mt-4 justify-content-center">
-                <a href="modeloBoda.html" class="btn btn-danger rounded-pill px-4">Ver Modelo</a>
+                <button type="button" class="btn btn-danger rounded-pill px-4" data-bs-toggle="modal"
+                    data-bs-target="#modelosModal">Ver Modelo</button>
                 <a href="#contacto" class="btn btn-light rounded-pill px-4 text-dark">Contactar</a>
             </div>
         </div>
     </section>
+
+    <!-- Modal de selección de modelos -->
+    <div class="modal fade" id="modelosModal" tabindex="-1" aria-labelledby="modelosModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modelosModalLabel">Elegí un modelo para ver</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row g-4">
+                        <div class="col-12 col-sm-6">
+                            <a href="./pages/modelo15.html" class="modelo-card">
+                                <div class="modelo-img"
+                                    style="background-image: url('https://images.unsplash.com/photo-1688142032131-2d98e0c309e7?q=80&w=1637&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+                                </div>
+                                <div class="p-3 text-center">
+                                    <p class="fw-bold mb-0 text-dark">15 años</p>
+                                    <small class="text-secondary">Ver modelo de invitación</small>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <a href="modeloBoda.html" class="modelo-card">
+                                <div class="modelo-img"
+                                    style="background-image: url('https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+                                </div>
+                                <div class="p-3 text-center">
+                                    <p class="fw-bold mb-0 text-dark">Boda</p>
+                                    <small class="text-secondary">Ver modelo de invitación</small>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 
     <!-- Categorías -->

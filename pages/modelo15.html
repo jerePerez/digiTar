@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Florencia | Mis 15 Años</title>
+    <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet" />
+
+    <!-- AOS CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <style>
+        :root {
+            --rose: #D3AF9B;
+            --rose-dark: #B48A73;
+            --cream: #FAF4EF;
+            --text-dark: #4A3F3A;
+            --gold: #C9A65B;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-display {
+            font-family: "Cormorant Garamond", serif;
+        }
+
+        .font-script {
+            font-family: "Great Vibes", cursive;
+        }
+
+        /* ===== Overlay de entrada (portada con música) ===== */
+        #entrada {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: linear-gradient(rgba(74, 63, 58, 0.55), rgba(74, 63, 58, 0.7)),
+                url("https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop");
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        #entrada.oculto {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .entrada-marco {
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 2.5rem 2rem;
+            max-width: 420px;
+            margin: 1.5rem;
+        }
+
+        .entrada-marco .eyebrow {
+            letter-spacing: 0.3em;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        .entrada-marco h1 {
+            font-size: 3rem;
+            margin: 0.3rem 0 1.2rem;
+        }
+
+        .entrada-marco .btn {
+            border-radius: 50px;
+            padding: 0.5rem 1.4rem;
+            margin: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-rose {
+            background: var(--rose);
+            border: none;
+            color: #fff;
+        }
+
+        .btn-rose:hover {
+            background: var(--rose-dark);
+            color: #fff;
+        }
+
+        .btn-outline-rose {
+            background: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+        }
+
+        .btn-outline-rose:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        /* ===== Marco ornamental (esquinas) ===== */
+        .con-ornamento {
+            position: relative;
+        }
+
+        .con-ornamento::before,
+        .con-ornamento::after {
+            content: "";
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--gold);
+            opacity: 0.8;
+        }
+
+        .con-ornamento::before {
+            top: 20px;
+            left: 20px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .con-ornamento::after {
+            bottom: 20px;
+            right: 20px;
+            border-left: none;
+            border-top: none;
+        }
+
+        /* ===== Hero ===== */
+        .hero {
+            min-height: 90vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(rgba(74, 63, 58, 0.3), rgba(74, 63, 58, 0.55)),
+                url("https://images.unsplash.com/photo-1699048524466-b4854c534cb3?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem 1.5rem;
+        }
+
+        .hero .fecha {
+            letter-spacing: 0.2em;
+            font-size: 1.2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 9vw, 5.5rem);
+            margin: 0.3rem 0;
+        }
+
+        .hero p.frase {
+            max-width: 600px;
+            margin: 1rem auto 0;
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* ===== Secciones ===== */
+        section {
+            padding: 5rem 1.5rem;
+        }
+
+        .seccion-titulo {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .seccion-titulo .linea {
+            width: 60px;
+            height: 1px;
+            background: var(--gold);
+            margin: 0.8rem auto 0;
+        }
+
+        /* ===== Cuenta regresiva ===== */
+        .countdown-wrap {
+            text-align: center;
+            background: var(--rose);
+            color: #fff;
+        }
+
+        .countdown-wrap .seccion-titulo .linea {
+            background: #fff;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 0.6rem;
+            padding: 1.1rem 1.4rem;
+            min-width: 85px;
+        }
+
+        .countdown-item .num {
+            font-size: 2.1rem;
+            font-family: "Cormorant Garamond", serif;
+            font-weight: 600;
+        }
+
+        .countdown-item .label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* ===== Invitados ===== */
+        .invitados-box {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 2.5rem;
+            background: #fff;
+            border: 1px solid #eadfd6;
+            border-radius: 1rem;
+        }
+
+        /* ===== Fiesta ===== */
+        .fiesta-card {
+            background: #fff;
+            border-radius: 1.2rem;
+            padding: 2.2rem 1.8rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            height: 100%;
+        }
+
+        .fiesta-card i {
+            font-size: 2.2rem;
+            color: var(--rose-dark);
+        }
+
+        .fiesta-card h6 {
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.75rem;
+            color: var(--rose-dark);
+            margin-top: 1rem;
+        }
+
+        .fiesta-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .fiesta-card .btn {
+            border-radius: 50px;
+            padding: 0.5rem 1.5rem;
+            margin-top: 0.8rem;
+            background: var(--rose-dark);
+            color: #fff;
+            border: none;
+        }
+
+        .fiesta-card .btn:hover {
+            background: var(--rose);
+            color: #fff;
+        }
+
+        /* ===== Confirmación CTA ===== */
+        .confirmacion-cta {
+            text-align: center;
+            background: var(--cream);
+        }
+
+        .confirmacion-cta .btn-grande {
+            background: var(--gold);
+            color: #fff;
+            border-radius: 50px;
+            padding: 0.7rem 2.6rem;
+            border: none;
+            font-weight: 500;
+        }
+
+        .confirmacion-cta .btn-grande:hover {
+            background: #b7913f;
+            color: #fff;
+        }
+
+        /* ===== Galería (lightbox simple) ===== */
+        .galeria-img {
+            aspect-ratio: 1/1;
+            background-size: cover;
+            background-position: center;
+            border-radius: 0.8rem;
+            width: 100%;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .galeria-img:hover {
+            transform: scale(1.03);
+        }
+
+        /* ===== Detalles fiesta (música/dresscode/tips) ===== */
+        .detalle-card {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .detalle-card i {
+            font-size: 2.4rem;
+            color: var(--rose-dark);
+        }
+
+        .detalle-card h5 {
+            margin: 1rem 0 0.4rem;
+        }
+
+        .detalle-card .btn {
+            border-radius: 50px;
+            padding: 0.4rem 1.4rem;
+            border: 1px solid var(--rose-dark);
+            color: var(--rose-dark);
+            background: transparent;
+        }
+
+        .detalle-card .btn:hover {
+            background: var(--rose-dark);
+            color: #fff;
+        }
+
+        /* ===== Regalos ===== */
+        .regalos {
+            background: var(--rose);
+            color: #fff;
+            text-align: center;
+        }
+
+        .regalos .btn {
+            border-radius: 50px;
+            padding: 0.5rem 1.8rem;
+            background: #fff;
+            color: var(--rose-dark);
+            border: none;
+            margin-top: 1rem;
+        }
+
+        /* ===== Hashtag ===== */
+        .hashtag {
+            text-align: center;
+        }
+
+        .hashtag .tag {
+            font-family: "Cormorant Garamond", serif;
+            font-size: 2rem;
+            color: var(--rose-dark);
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background: var(--text-dark);
+            color: #d8cec8;
+        }
+
+        .icono-inicio {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    width: 50px;
+    /* ajustá el tamaño a tu gusto */
+    height: 50px;
+    z-index: 9999;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: transparent;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
+}
+
+.icono-inicio img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.icono-inicio:hover {
+    transform: scale(1.1);
+}
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== Overlay de entrada con opción de música ===== -->
+    <!-- <div id="entrada">
+        <div class="entrada-marco con-ornamento">
+            <p class="eyebrow">Bienvenidos a la invitación de</p>
+            <h1 class="font-script" style="font-size:3.2rem;">Florencia</h1>
+            <p class="mb-4">Mis 15 años</p>
+            <button class="btn btn-rose" onclick="ingresar(true)">Ingresar con música</button>
+            <button class="btn btn-outline-rose" onclick="ingresar(false)">Ingresar sin música</button>
+        </div>
+    </div> -->
+    <a href="../index.html" class="icono-inicio" title="Ir al inicio">
+        <img src="../images/digiTar_logo.png" alt="Inicio">
+    </a>
+    
+
+    <!-- ===== Hero ===== -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content" data-aos="fade-up">
+            <p class="fecha">14 · 11 · 2026</p>
+            <h1 class="font-script" style="font-size:4.5rem;">Florencia</h1>
+            <p class="mb-0">Mis 15 años</p>
+            <p class="frase">Te espero para compartir la alegría de esa noche que será para mí mágica, inolvidable y
+                única.</p>
+        </div>
+    </section>
+
+    <!-- ===== Cuenta regresiva ===== -->
+    <section class="countdown-wrap" data-aos="fade-up">
+        <div class="seccion-titulo">
+            <h2>Falta muy poco</h2>
+            <div class="linea"></div>
+        </div>
+        <div class="countdown" id="countdown">
+            <div class="countdown-item">
+                <div class="num" id="days">00</div>
+                <div class="label">Días</div>
+            </div>
+            <div class="countdown-item">
+                <div class="num" id="hours">00</div>
+                <div class="label">Horas</div>
+            </div>
+            <div class="countdown-item">
+                <div class="num" id="minutes">00</div>
+                <div class="label">Min</div>
+            </div>
+            <div class="countdown-item">
+                <div class="num" id="seconds">00</div>
+                <div class="label">Seg</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Invitados (texto personalizable) ===== -->
+    <section id="invitados" data-aos="fade-up">
+        <div class="invitados-box">
+            <h6 class="text-uppercase" style="letter-spacing:0.15em; color:var(--rose-dark);">Invitados</h6>
+            <!-- EDITAR: si mandás el link personalizado a cada invitado, podés cambiar este texto por su nombre -->
+            <h3>¡Este es tu lugar reservado!</h3>
+            <p class="mb-0">Nos encanta compartir este momento con vos. ¡Te esperamos!</p>
+        </div>
+    </section>
+
+    <!-- ===== Fiesta ===== -->
+    <section id="fiesta">
+        <div class="seccion-titulo" data-aos="fade-up">
+            <h2>La Fiesta</h2>
+            <div class="linea"></div>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-12 col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="fiesta-card">
+                    <i class="bi bi-calendar-heart"></i>
+                    <h6>Día</h6>
+                    <h3>Sábado 14 de Noviembre - 20hs</h3>
+                    <a href="#" id="btn-agendar" class="btn">Agendar</a>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="fiesta-card">
+                    <i class="bi bi-building"></i>
+                    <h6>Lugar</h6>
+                    <h3>Salón Avril</h3>
+                    <a href="#confirmar" class="btn">Confirmar asistencia</a>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="fiesta-card">
+                    <i class="bi bi-geo-alt"></i>
+                    <h6>Dirección</h6>
+                    <h3>Av. Pergamino 203</h3>
+                    <a href="https://maps.google.com/?q=Av.+Pergamino+203" target="_blank" class="btn">¿Cómo
+                        llegar?</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== Confirmación CTA ===== -->
+    <section class="confirmacion-cta" id="confirmar" data-aos="fade-up">
+        <div class="seccion-titulo">
+            <h2>Confirmación de Asistencia</h2>
+            <div class="linea"></div>
+        </div>
+        <p>Es importante que confirmes tu asistencia</p>
+        <form id="rsvp-form" class="row g-3 justify-content-center" style="max-width:560px; margin:0 auto;">
+            <div class="col-12">
+                <input type="text" class="form-control" id="rsvp-nombre" placeholder="Tu nombre completo" required>
+            </div>
+            <div class="col-12">
+                <select class="form-control" id="rsvp-asistencia" required>
+                    <option value="" disabled selected>¿Vas a asistir?</option>
+                    <option value="Sí, voy a estar">Sí, voy a estar</option>
+                    <option value="No voy a poder ir">No voy a poder ir</option>
+                </select>
+            </div>
+            <div class="col-12 text-center">
+                <button type="submit" class="btn-grande">Enviar confirmación</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- ===== Galería ===== -->
+    <section id="galeria">
+        <!-- <div class="seccion-titulo" data-aos="fade-up">
+            <h2>Un recorrido de estos 15 años</h2>
+            <div class="linea"></div>
+            <p class="mt-2">Junto a personas que son muy importantes en mi vida</p>
+        </div> -->
+        <div class="row g-3">
+            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="0">
+                <div class="galeria-img" data-bs-toggle="modal" data-bs-target="#lightboxModal"
+                    data-img="https://images.unsplash.com/photo-1622585824949-319653211121?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    style="background-image:url('https://images.unsplash.com/photo-1622585824949-319653211121?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
+                <div class="galeria-img" data-bs-toggle="modal" data-bs-target="#lightboxModal"
+                    data-img="https://images.unsplash.com/photo-1622586113797-0df2b2cc73da?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    style="background-image:url('https://images.unsplash.com/photo-1622586113797-0df2b2cc73da?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
+                <div class="galeria-img" data-bs-toggle="modal" data-bs-target="#lightboxModal"
+                    data-img="https://images.unsplash.com/photo-1622586292600-86158774001e?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    style="background-image:url('https://images.unsplash.com/photo-1622586292600-86158774001e?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+                </div>
+            </div>
+            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
+                <div class="galeria-img" data-bs-toggle="modal" data-bs-target="#lightboxModal"
+                    data-img="https://images.unsplash.com/photo-1622586026330-c5fc5300b674?q=80&w=1664&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    style="background-image:url('https://images.unsplash.com/photo-1622586026330-c5fc5300b674?q=80&w=1664&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal lightbox de galería -->
+    <div class="modal fade" id="lightboxModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content bg-transparent border-0">
+                <button type="button" class="btn-close btn-close-white ms-auto me-2 mt-2" data-bs-dismiss="modal"
+                    aria-label="Cerrar"></button>
+                <img id="lightbox-img" src="" alt="Foto" class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Detalles de la fiesta ===== -->
+    <section>
+        <div class="seccion-titulo" data-aos="fade-up">
+            <h2>Detalles de la Fiesta</h2>
+            <div class="linea"></div>
+        </div>
+        <div class="row g-4 text-center">
+            <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="0">
+                <div class="detalle-card">
+                    <i class="bi bi-music-note-list"></i>
+                    <h5>Música</h5>
+                    <p>¿Cuál es la canción que no debe faltar en la playlist?</p>
+                    <button class="btn" data-bs-toggle="modal" data-bs-target="#modalMusica">Sugerir canción</button>
+                </div>
+            </div>
+            <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="detalle-card">
+                    <i class="bi bi-bag-heart"></i>
+                    <h5>Dress Code</h5>
+                    <p>Una orientación para tu vestuario</p>
+                    <button class="btn" data-bs-toggle="modal" data-bs-target="#modalDresscode">Ver más</button>
+                </div>
+            </div>
+            <div class="col-12 col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="detalle-card">
+                    <i class="bi bi-info-circle"></i>
+                    <h5>Tips y Notas</h5>
+                    <p>Información adicional para tener en cuenta</p>
+                    <button class="btn" data-bs-toggle="modal" data-bs-target="#modalTips">+ Info</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal música -->
+    <div class="modal fade" id="modalMusica" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sugerir canción</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="cancion-form" class="row g-3">
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="cancion-nombre" placeholder="Tu nombre">
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" id="cancion-tema"
+                                placeholder="Nombre de la canción / artista" required>
+                        </div>
+                        <div class="col-12 text-center">
+                            <button type="submit" class="btn btn-rose">Enviar sugerencia</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal dress code -->
+    <div class="modal fade" id="modalDresscode" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Dress Code</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <!-- EDITAR: código de vestimenta -->
+                    <p class="mb-2 fw-bold">Elegante Sport</p>
+                    <p>Evitar el color blanco, reservado para la festejada.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal tips -->
+    <div class="modal fade" id="modalTips" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tips y Notas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- EDITAR: información adicional -->
+                    <ul class="mb-0">
+                        <li>El salón cuenta con estacionamiento propio.</li>
+                        <li>Se recomienda llegar 15 minutos antes del horario indicado.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Regalos ===== -->
+    <section class="regalos" data-aos="fade-up">
+        <div class="seccion-titulo">
+            <h2 style="color:#fff;">Regalos</h2>
+            <div class="linea" style="background:#fff;"></div>
+        </div>
+        <p>Si deseas regalarme algo más que tu hermosa presencia...</p>
+        <button class="btn" data-bs-toggle="modal" data-bs-target="#modalRegalos">Ver más</button>
+    </section>
+
+    <!-- Modal regalos -->
+    <div class="modal fade" id="modalRegalos" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Regalos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <!-- EDITAR: datos de transferencia / lista de regalos -->
+                    <p class="mb-1">Alias: <strong>florencia.15.mp</strong></p>
+                    <p class="mb-0">CBU: <strong>0000000000000000000000</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Hashtag ===== -->
+    <section class="hashtag" data-aos="fade-up">
+        <p class="tag">#15flor</p>
+        <p>Compartí tus fotos y videos de ese hermoso día</p>
+        <a href="https://www.instagram.com/" target="_blank" class="btn btn-outline-secondary rounded-pill px-4">
+            <i class="bi bi-instagram"></i> Ver en Instagram
+        </a>
+    </section>
+
+    <!-- ===== Footer ===== -->
+    <footer class="text-center py-4">
+        <p class="font-script mb-1" style="font-size:1.8rem; color:#fff;">Florencia</p>
+        <small>Mis 15 años &middot; 14 de Noviembre de 2026</small>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- AOS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, easing: 'ease-in-out', once: false });
+    </script>
+
+    <!-- Entrada con / sin música -->
+    <script>
+        function ingresar(conMusica) {
+            document.getElementById("entrada").classList.add("oculto");
+            const musica = document.getElementById("musica-fondo");
+            const toggleBtn = document.getElementById("toggle-musica");
+
+            if (conMusica) {
+                musica.play().catch(() => { });
+                toggleBtn.classList.remove("d-none");
+            }
+        }
+
+        document.getElementById("toggle-musica").addEventListener("click", function () {
+            const musica = document.getElementById("musica-fondo");
+            if (musica.paused) {
+                musica.play();
+            } else {
+                musica.pause();
+            }
+        });
+    </script>
+
+    <!-- Cuenta regresiva -->
+    <script>
+        // EDITAR: fecha y hora del evento
+        const fechaEvento = new Date("2026-11-14T20:00:00").getTime();
+        const countdownEl = document.getElementById("countdown");
+
+        const timer = setInterval(function () {
+            const ahora = new Date().getTime();
+            const distancia = fechaEvento - ahora;
+
+            if (distancia < 0) {
+                clearInterval(timer);
+                countdownEl.innerHTML = "<p class='fw-bold mb-0'>¡Hoy es el gran día! 🎉</p>";
+                return;
+            }
+
+            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = String(dias).padStart(2, "0");
+            document.getElementById("hours").innerText = String(horas).padStart(2, "0");
+            document.getElementById("minutes").innerText = String(minutos).padStart(2, "0");
+            document.getElementById("seconds").innerText = String(segundos).padStart(2, "0");
+        }, 1000);
+    </script>
+
+    <!-- Botón Agendar (Google Calendar) -->
+    <script>
+        document.getElementById("btn-agendar").addEventListener("click", function (e) {
+            e.preventDefault();
+            // EDITAR: título, fecha/hora inicio y fin (formato AAAAMMDDTHHMMSS), y ubicación
+            const titulo = encodeURIComponent("Fiesta de 15 años de Florencia");
+            const inicio = "20261114T200000";
+            const fin = "20261115T030000";
+            const ubicacion = encodeURIComponent("Salón Avril, Av. Pergamino 203");
+            const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=${inicio}/${fin}&location=${ubicacion}`;
+            window.open(url, "_blank");
+        });
+    </script>
+
+    <!-- Galería lightbox -->
+    <script>
+        document.querySelectorAll(".galeria-img").forEach(function (img) {
+            img.addEventListener("click", function () {
+                document.getElementById("lightbox-img").src = this.getAttribute("data-img");
+            });
+        });
+    </script>
+
+    <!-- Confirmación de asistencia vía WhatsApp -->
+    <script>
+        document.getElementById("rsvp-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const nombre = document.getElementById("rsvp-nombre").value;
+            const asistencia = document.getElementById("rsvp-asistencia").value;
+
+            // EDITAR: número de WhatsApp que recibe las confirmaciones
+            const numeroWhatsapp = "5491130077936";
+            const texto = `¡Hola! Confirmo mi asistencia a los XV años de Florencia.%0A%0ANombre: ${encodeURIComponent(nombre)}%0AAsistencia: ${encodeURIComponent(asistencia)}`;
+            window.open(`https://wa.me/${numeroWhatsapp}?text=${texto}`, "_blank");
+        });
+
+        document.getElementById("cancion-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const nombre = document.getElementById("cancion-nombre").value || "Anónimo";
+            const tema = document.getElementById("cancion-tema").value;
+
+            // EDITAR: mismo número de WhatsApp que las confirmaciones
+            const numeroWhatsapp = "5491130077936";
+            const texto = `🎶 Sugerencia de canción para la fiesta de Florencia%0A%0ADe: ${encodeURIComponent(nombre)}%0ACanción: ${encodeURIComponent(tema)}`;
+            window.open(`https://wa.me/${numeroWhatsapp}?text=${texto}`, "_blank");
+        });
+    </script>
+
+</body>
+
+</html>
