@@ -22,13 +22,7 @@ export default function App() {
             </div>
           </div>
           <div className="flex items-center gap-space-xs">
-            <button
-              aria-label="Música de celebración"
-              type="button"
-              className="w-11 h-11 rounded-full bg-surface-container-high flex items-center justify-center text-secondary hover:text-secondary-fixed transition-colors"
-            >
-              <span className="material-symbols-outlined text-[20px]">volume_up</span>
-            </button>
+            
             <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
               <span className="material-symbols-outlined text-on-primary text-[18px]">person</span>
             </div>
@@ -68,12 +62,10 @@ export default function App() {
               </div>
 
               <p className="mt-space-md font-body-md text-body-md text-on-surface-variant max-w-xs">
-                ¡Operación Cumpleaños en marcha! Unite al squad de{' '}
-                <span className="text-secondary font-bold">{data.hosts[0]}</span>,{' '}
-                <span className="text-tertiary font-bold">{data.hosts[1]}</span>,{' '}
-                <span className="text-primary font-bold">{data.hosts[2]}</span> y{' '}
-                <span className="text-secondary-fixed font-bold">{data.hosts[3]}</span> para resolver
-                el gran misterio.
+                ¡Operación Cumpleaños en marcha!
+              </p>
+              <p className="mt-space-md font-body-md text-body-md text-on-surface-variant max-w-xs">
+                Unite al squad para resolver el gran misterio.
               </p>
 
               <div className="mt-space-md flex flex-wrap justify-center gap-2">
@@ -302,13 +294,17 @@ export default function App() {
                 </span>
                 <span className="material-symbols-outlined text-[16px] text-secondary">star</span>
               </div>
+              <p className="font-body-sm text-body-sm text-on-surface-variant">
+                Hecho con ♥ por <a href="https://digitar.netlify.app/" class="text-decoration-none text-light"
+                  target="_blank">DigiTar</a>
+              </p>
             </div>
           </div>
         </div>
       </main>
 
       {/* Nav inferior */}
-      <nav className="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/85 backdrop-blur-2xl shadow-[0_-8px_32px_rgba(124,58,237,0.25)]">
+      {/* <nav className="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/85 backdrop-blur-2xl shadow-[0_-8px_32px_rgba(124,58,237,0.25)]">
         <div className="flex justify-around items-center h-20 px-gutter-sm">
           <a
             aria-current="page"
@@ -340,7 +336,7 @@ export default function App() {
             <span className="font-label-mission text-[10px] tracking-wider uppercase">RSVP</span>
           </a>
         </div>
-      </nav>
+      </nav> */}
     </div>
   )
 }
