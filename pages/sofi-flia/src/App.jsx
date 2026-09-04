@@ -153,6 +153,22 @@ export default function App() {
                     </span>
                   </div>
                 </div>
+                <div className="flex items-start gap-space-sm">
+  <div className="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center shrink-0 text-secondary-fixed">
+    <span className="material-symbols-outlined text-[22px]">restaurant</span>
+  </div>
+  <div className="flex flex-col min-w-0">
+    <span className="font-label-mission text-label-mission text-on-surface-variant uppercase">
+      Provisiones del Squad
+    </span>
+    <span className="font-headline-sm text-headline-sm text-on-surface">
+      {data.potluck.title}
+    </span>
+    <span className="font-body-sm text-body-sm text-on-surface-variant">
+      {data.potluck.note}
+    </span>
+  </div>
+</div>
               </div>
             </Reveal>
 

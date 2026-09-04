@@ -28,6 +28,11 @@ export const eventData = {
     imageUrl:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuCA_JLTmJHEkRaABWOBCRL8f3RsS7caMGCkfcrNvlue7q0_YSqBkUAE4kJMe7kClJFSNFrHNjw-Mt_AJUezZa4YPl4DrKNQxF2kTlBeMzqgPJ34iEOXAPgmd4mcNTesscxgjlqPhWrqEQPZN7DtA0METHYWVYU050csOdJ6KwCbBI1EmzqitIQ_LvXYPOHrghpSFwog9ERfLc0Jl86In45nM-hSD8pBb42KzRe87qHHuVyFlmXb9Mly',
   },
+
+  potluck: {
+    title: 'Snack o bebida para compartir',
+    note: 'Cada agente trae algo dulce o salado para la mesa del squad.',
+  },
   
   rsvp: {
     deadline: '17 de Septiembre',
