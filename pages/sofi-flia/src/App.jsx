@@ -203,64 +203,7 @@ export default function App() {
               </div>
             </Reveal>
 
-            {/* Itinerario */}
-            {/* <Reveal className="flex flex-col gap-space-sm">
-              <div className="flex items-center gap-2 px-1">
-                <span className="material-symbols-outlined text-primary text-[22px]">flag_circle</span>
-                <h2 className="font-headline-sm text-headline-sm text-on-surface font-bold">
-                  Itinerario de Retos
-                </h2>
-              </div>
-              <div className="rounded-2xl bg-surface-container-low shadow-xl p-space-md flex flex-col gap-space-md relative">
-                {data.itinerary.map((step, i) => (
-                  <div key={step.time} className="flex items-start gap-space-sm relative">
-                    <div className="flex flex-col items-center">
-                      <div
-                        className={`w-8 h-8 rounded-full flex items-center justify-center font-title-badge text-xs font-bold ${step.color}`}
-                      >
-                        {i + 1}
-                      </div>
-                      {i < data.itinerary.length - 1 && (
-                        <div className="w-0.5 h-12 bg-surface-container-high my-1" />
-                      )}
-                    </div>
-                    <div className="flex flex-col pt-0.5">
-                      <span
-                        className={`font-label-mission text-label-mission uppercase font-bold ${step.textColor}`}
-                      >
-                        {step.time}
-                      </span>
-                      <span className="font-body-md text-body-md text-on-surface font-bold">
-                        {step.title}
-                      </span>
-                      <span className="font-body-sm text-body-sm text-on-surface-variant">
-                        {step.note}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </Reveal> */}
-
-            {/* Código de vestimenta */}
-            <Reveal className="flex flex-col gap-space-sm">
-              <div className="rounded-2xl bg-surface-container-low shadow-xl p-space-md flex items-center gap-space-sm">
-                <div className="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary-fixed shrink-0">
-                  <span className="material-symbols-outlined text-[28px]">checkroom</span>
-                </div>
-                <div className="flex flex-col">
-                  <span className="font-label-mission text-label-mission uppercase text-secondary font-bold">
-                    Código de vestimenta
-                  </span>
-                  <span className="font-headline-sm text-headline-sm text-on-surface">
-                    {data.dressCode.title}
-                  </span>
-                  <p className="font-body-sm text-body-sm text-on-surface-variant">
-                    {data.dressCode.note}
-                  </p>
-                </div>
-              </div>
-            </Reveal>
+            
 
             {/* RSVP */}
             <Reveal className="flex flex-col items-center text-center gap-space-sm pt-space-xs">
