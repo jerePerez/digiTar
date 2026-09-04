@@ -187,7 +187,7 @@ export default function App() {
                       {data.venue.name}
                     </span>
                     <span className="font-body-sm text-body-sm text-on-surface-variant">
-                      Coordenadas del Club del Misterio
+                      Coordenadas del Club Misterio
                     </span>
                   </div>
                 </div>

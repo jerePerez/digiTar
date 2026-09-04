@@ -1,4 +1,4 @@
-# Invitación Sofía #7 — Club del Misterio
+# Invitación Sofía #7 — Club Misterio
 
 Proyecto React + Vite + Tailwind.
 

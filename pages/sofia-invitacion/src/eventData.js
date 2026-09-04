@@ -1,7 +1,7 @@
 export const eventData = {
   celebrant: 'SOFÍA',
   age: 7,
-  theme: 'El Club del Misterio',
+  theme: 'El Club Misterio',
   hosts: ['Fede Vigevani', 'La Vecibanda', 'Ian Lucas', 'El Parce'],
   hashtags: ['#FedeSquad', '#LaVecibanda', '#IanLucas', '#ElParce'],
   floatingImages: [
@@ -30,7 +30,7 @@ export const eventData = {
   },
   dressCode: {
     title: 'Ropa cómoda o Neón',
-    note: '¡O vení caracterizado como detective secreto del Club del Misterio!',
+    note: '¡Venite como team Club Misterio o Vecibanda!',
   },
   rsvp: {
     deadline: '17 de Septiembre',
@@ -49,7 +49,7 @@ export const eventData = {
     },
     {
       time: '05:00 PM',
-      title: 'Retos del Club del Misterio',
+      title: 'Retos del Club Misterio',
       note: 'Pruebas en equipo, escape room infantil y pistas.',
       color: 'bg-tertiary text-on-tertiary',
       textColor: 'text-tertiary',
