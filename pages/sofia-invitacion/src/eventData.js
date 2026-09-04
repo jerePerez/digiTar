@@ -4,6 +4,13 @@ export const eventData = {
   theme: 'El Club del Misterio',
   hosts: ['Fede Vigevani', 'La Vecibanda', 'Ian Lucas', 'El Parce'],
   hashtags: ['#FedeSquad', '#LaVecibanda', '#IanLucas', '#ElParce'],
+  floatingImages: [
+    { src: 'floating/alfa.png', anim: 'animate-float-slow', left: '8%', size: 'w-14 h-14' },
+    { src: 'floating/azazel.png', anim: 'animate-float-mid', left: '28%', size: 'w-12 h-12' },
+    { src: 'floating/duffy.png', anim: 'animate-float-fast', left: '58%', size: 'w-14 h-14' },
+    { src: 'floating/fantasma.png', anim: 'animate-float-mid', left: '82%', size: 'w-12 h-12' },
+    { src: 'floating/luli.png', anim: 'animate-float-slow', left: '42%', size: 'w-14 h-14' },
+  ],
   date: {
   display: 'Sábado, 19 de Septiembre',
   note: 'Año Oficial de la Misión 2026',

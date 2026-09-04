@@ -32,7 +32,7 @@ export default function App() {
 
       <main className="flex flex-col relative w-full pt-16 pb-28 bg-surface">
         <div className="flex flex-col w-full relative overflow-hidden">
-          <AmbientBalloons />
+          <AmbientBalloons images={data.floatingImages} />
 
           <div className="relative z-10 flex flex-col gap-space-2xl px-gutter-sm pb-space-3xl max-w-xl mx-auto w-full">
             {/* Hero */}
@@ -47,7 +47,7 @@ export default function App() {
               <div className="mt-space-md relative flex flex-col items-center">
                 <p className="font-headline-sm text-headline-sm text-secondary-fixed tracking-wide">
                   ¡Estás invitado a la fiesta de!
-                </p>
+                </p>                
                 <NameHero name={data.celebrant} />
               </div>
 
