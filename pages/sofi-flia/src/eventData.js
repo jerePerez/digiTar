@@ -18,7 +18,7 @@ export const eventData = {
   target: new Date(2026, 8, 19, 18, 0, 0),
 },
   time: {
-    display: '06:00 PM – 09:00 PM',
+    display: '04:00 PM – 07:00 PM',
     note: 'Llegada puntual para no perder pistas',
   },
   venue: {
