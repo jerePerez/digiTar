@@ -1,6 +1,6 @@
 [build]
   # Se ejecuta desde la raíz del repo (platanoWeb/)
-  command = "cd pages/sofia-invitacion && npm install && npm run build && rm -f index.html && rm -rf assets && cp -r dist/. . && cd ../sofi-flia && npm install && npm run build && rm -f index.html && rm -rf assets && cp -r dist/. ."
+  command = "cd pages/modelo-cumple && npm install && npm run build && rm -f index.html && rm -rf assets && cp -r dist/. . && cd ../sofi-flia && npm install && npm run build && rm -f index.html && rm -rf assets && cp -r dist/. ."
   publish = "."
 
 [build.environment]
