@@ -21,11 +21,11 @@
 
     <style>
         :root {
-            --rose: #D3AF9B;
-            --rose-dark: #B48A73;
-            --cream: #FAF4EF;
-            --text-dark: #4A3F3A;
-            --gold: #C9A65B;
+            --rose: #B4A8C5;
+            --rose-dark: #887A9F;
+            --cream: #F8F5F2;
+            --text-dark: #49424F;
+            --gold: #C7AD83;
         }
 
         body {
@@ -392,11 +392,11 @@
 
         .icono-inicio {
     position: fixed;
-    top: 15px;
+    bottom: 15px;
     right: 15px;
-    width: 50px;
+    width: 35px;
     /* ajustá el tamaño a tu gusto */
-    height: 50px;
+    height: 35px;
     z-index: 9999;
     border-radius: 50%;
     overflow: hidden;
@@ -429,7 +429,7 @@
             <button class="btn btn-outline-rose" onclick="ingresar(false)">Ingresar sin música</button>
         </div>
     </div> -->
-    <a href="../index.html" class="icono-inicio" title="Ir al inicio">
+    <a href="https://digitar.netlify.app/" target="_blank" class="icono-inicio" title="Ir al inicio">
         <img src="../images/digiTar_logo.png" alt="Inicio">
     </a>
     
@@ -811,7 +811,7 @@
             const asistencia = document.getElementById("rsvp-asistencia").value;
 
             // EDITAR: número de WhatsApp que recibe las confirmaciones
-            const numeroWhatsapp = "5491130077936";
+            const numeroWhatsapp = "5491166744332";
             const texto = `¡Hola! Confirmo mi asistencia a los XV años de Milagros.%0A%0ANombre: ${encodeURIComponent(nombre)}%0AAsistencia: ${encodeURIComponent(asistencia)}`;
             window.open(`https://wa.me/${numeroWhatsapp}?text=${texto}`, "_blank");
         });
@@ -822,7 +822,7 @@
             const tema = document.getElementById("cancion-tema").value;
 
             // EDITAR: mismo número de WhatsApp que las confirmaciones
-            const numeroWhatsapp = "5491130077936";
+            const numeroWhatsapp = "5491166744332";
             const texto = `🎶 Sugerencia de canción para la fiesta de Milagros%0A%0ADe: ${encodeURIComponent(nombre)}%0ACanción: ${encodeURIComponent(tema)}`;
             window.open(`https://wa.me/${numeroWhatsapp}?text=${texto}`, "_blank");
         });
