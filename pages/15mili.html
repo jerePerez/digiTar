@@ -21,11 +21,11 @@
 
     <style>
         :root {
-            --rose: #B4A8C5;
-            --rose-dark: #887A9F;
-            --cream: #F8F5F2;
-            --text-dark: #49424F;
-            --gold: #C7AD83;
+            --rose: #E8C5C8;
+            --rose-dark: #D5A9AE;
+            --cream: #FAF5F0;
+            --text-dark: #574548;
+            --gold: #C6A16B;
         }
 
         body {
@@ -43,54 +43,6 @@
             font-family: "Great Vibes", cursive;
         }
 
-        /* ===== Overlay de entrada (portada con música) ===== */
-        #entrada {
-            position: fixed;
-            inset: 0;
-            z-index: 2000;
-            background: linear-gradient(rgba(74, 63, 58, 0.55), rgba(74, 63, 58, 0.7)),
-                url("https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1600&auto=format&fit=crop");
-            background-size: cover;
-            background-position: center;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-
-        #entrada.oculto {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .entrada-marco {
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            padding: 2.5rem 2rem;
-            max-width: 420px;
-            margin: 1.5rem;
-        }
-
-        .entrada-marco .eyebrow {
-            letter-spacing: 0.3em;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-        }
-
-        .entrada-marco h1 {
-            font-size: 3rem;
-            margin: 0.3rem 0 1.2rem;
-        }
-
-        .entrada-marco .btn {
-            border-radius: 50px;
-            padding: 0.5rem 1.4rem;
-            margin: 0.4rem;
-            font-size: 0.9rem;
-        }
-
         .btn-rose {
             background: var(--rose);
             border: none;
@@ -100,46 +52,6 @@
         .btn-rose:hover {
             background: var(--rose-dark);
             color: #fff;
-        }
-
-        .btn-outline-rose {
-            background: transparent;
-            border: 1px solid #fff;
-            color: #fff;
-        }
-
-        .btn-outline-rose:hover {
-            background: rgba(255, 255, 255, 0.15);
-            color: #fff;
-        }
-
-        /* ===== Marco ornamental (esquinas) ===== */
-        .con-ornamento {
-            position: relative;
-        }
-
-        .con-ornamento::before,
-        .con-ornamento::after {
-            content: "";
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            border: 1px solid var(--gold);
-            opacity: 0.8;
-        }
-
-        .con-ornamento::before {
-            top: 20px;
-            left: 20px;
-            border-right: none;
-            border-bottom: none;
-        }
-
-        .con-ornamento::after {
-            bottom: 20px;
-            right: 20px;
-            border-left: none;
-            border-top: none;
         }
 
         /* ===== Hero ===== */
@@ -176,13 +88,6 @@
         .hero h1 {
             font-size: clamp(3rem, 9vw, 5.5rem);
             margin: 0.3rem 0;
-        }
-
-        .hero p.frase {
-            max-width: 600px;
-            margin: 1rem auto 0;
-            font-size: 1.05rem;
-            line-height: 1.7;
         }
 
         /* ===== Secciones ===== */
@@ -225,8 +130,8 @@
             background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.4);
             border-radius: 0.6rem;
-            padding: 1.1rem 1.4rem;
-            min-width: 85px;
+            padding: 1.1rem 0.9rem;
+            min-width: 50px;
         }
 
         .countdown-item .num {
@@ -239,17 +144,6 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-        }
-
-        /* ===== Invitados ===== */
-        .invitados-box {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-            padding: 2.5rem;
-            background: #fff;
-            border: 1px solid #eadfd6;
-            border-radius: 1rem;
         }
 
         /* ===== Fiesta ===== */
@@ -294,7 +188,7 @@
             color: #fff;
         }
 
-        /* ===== Confirmación CTA ===== */
+        /* ===== Confirmación ===== */
         .confirmacion-cta {
             text-align: center;
             background: var(--cream);
@@ -314,22 +208,11 @@
             color: #fff;
         }
 
-        /* ===== Galería (lightbox simple) ===== */
-        .galeria-img {
-            aspect-ratio: 1/1;
-            background-size: cover;
-            background-position: center;
-            border-radius: 0.8rem;
-            width: 100%;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+        .confirmacion-cta .btn-grande:disabled {
+            opacity: 0.6;
         }
 
-        .galeria-img:hover {
-            transform: scale(1.03);
-        }
-
-        /* ===== Detalles fiesta (música/dresscode/tips) ===== */
+        /* ===== Detalles fiesta ===== */
         .detalle-card {
             text-align: center;
             padding: 1rem;
@@ -390,49 +273,114 @@
             color: #d8cec8;
         }
 
+        .admin-link {
+            display: inline-block;
+            margin-top: 0.8rem;
+            padding: 0.25rem 0.9rem;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            color: #d8cec8;
+            text-decoration: none;
+            border: 1px solid rgba(216, 206, 200, 0.35);
+            border-radius: 50px;
+            opacity: 0.7;
+            transition: opacity 0.2s, border-color 0.2s;
+        }
+
+        .admin-link:hover {
+            color: #fff;
+            opacity: 1;
+            border-color: var(--gold);
+        }
+
         .icono-inicio {
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
-    width: 35px;
-    /* ajustá el tamaño a tu gusto */
-    height: 35px;
-    z-index: 9999;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: transparent;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s;
-}
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            width: 35px;
+            height: 35px;
+            z-index: 9999;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: transparent;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+        }
 
-.icono-inicio img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+        .icono-inicio img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-.icono-inicio:hover {
-    transform: scale(1.1);
-}
+        .icono-inicio:hover {
+            transform: scale(1.1);
+        }
+
+        /* ===== Panel admin ===== */
+        #admin-panel {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            background: var(--cream);
+            overflow-y: auto;
+            padding: 2rem 1rem 4rem;
+        }
+
+        #admin-panel.visible {
+            display: block;
+        }
+
+        .admin-wrap {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .admin-login {
+            max-width: 360px;
+            margin: 15vh auto 0;
+            text-align: center;
+            background: #fff;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .admin-card {
+            background: #fff;
+            border-radius: 1rem;
+            padding: 1.2rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 1.5rem;
+        }
+
+        .admin-card h4 {
+            margin-bottom: 1rem;
+        }
+
+        .stat {
+            display: inline-block;
+            background: var(--cream);
+            border-radius: 50px;
+            padding: 0.25rem 0.9rem;
+            font-size: 0.85rem;
+            margin: 0 0.3rem 0.8rem 0;
+        }
+
+        .admin-table td,
+        .admin-table th {
+            font-size: 0.9rem;
+            vertical-align: middle;
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- ===== Overlay de entrada con opción de música ===== -->
-    <!-- <div id="entrada">
-        <div class="entrada-marco con-ornamento">
-            <p class="eyebrow">Bienvenidos a la invitación de</p>
-            <h1 class="font-script" style="font-size:3.2rem;">Florencia</h1>
-            <p class="mb-4">Mis 15 años</p>
-            <button class="btn btn-rose" onclick="ingresar(true)">Ingresar con música</button>
-            <button class="btn btn-outline-rose" onclick="ingresar(false)">Ingresar sin música</button>
-        </div>
-    </div> -->
     <a href="https://digitar.netlify.app/" target="_blank" class="icono-inicio" title="Ir al inicio">
         <img src="../images/digiTar_logo.png" alt="Inicio">
     </a>
-    
 
     <!-- ===== Hero ===== -->
     <section class="hero">
@@ -441,8 +389,6 @@
             <p class="fecha">18 · 12 · 2026</p>
             <h1 class="font-script" style="font-size:4.5rem;">Milagros</h1>
             <p class="mb-0">Mis 15 años</p>
-            <p class="frase">Te espero para compartir la alegría de esa noche que será para mí mágica, inolvidable y
-                única.</p>
         </div>
     </section>
 
@@ -471,16 +417,6 @@
             </div>
         </div>
     </section>
-
-    <!-- ===== Invitados (texto personalizable) ===== -->
-    <!-- <section id="invitados" data-aos="fade-up">
-        <div class="invitados-box">
-            <h6 class="text-uppercase" style="letter-spacing:0.15em; color:var(--rose-dark);">Invitados</h6>
-            
-            <h3>¡Este es tu lugar reservado!</h3>
-            <p class="mb-0">Nos encanta compartir este momento con vos. ¡Te esperamos!</p>
-        </div>
-    </section> -->
 
     <!-- ===== Fiesta ===== -->
     <section id="fiesta">
@@ -517,7 +453,7 @@
         </div>
     </section>
 
-    <!-- ===== Confirmación CTA ===== -->
+    <!-- ===== Confirmación ===== -->
     <section class="confirmacion-cta" id="confirmar" data-aos="fade-up">
         <div class="seccion-titulo">
             <h2>Confirmación de Asistencia</h2>
@@ -526,7 +462,7 @@
         <p>Es importante que confirmes tu asistencia</p>
         <form id="rsvp-form" class="row g-3 justify-content-center" style="max-width:560px; margin:0 auto;">
             <div class="col-12">
-                <input type="text" class="form-control" id="rsvp-nombre" placeholder="Tu nombre completo" required>
+                <input type="text" class="form-control" id="rsvp-nombre" placeholder="Tu nombre completo" maxlength="100" required>
             </div>
             <div class="col-12">
                 <select class="form-control" id="rsvp-asistencia" required>
@@ -536,52 +472,11 @@
                 </select>
             </div>
             <div class="col-12 text-center">
-                <button type="submit" class="btn-grande">Enviar confirmación</button>
+                <button type="submit" class="btn-grande" id="rsvp-btn">Enviar confirmación</button>
             </div>
+            <div class="col-12" id="rsvp-msg"></div>
         </form>
     </section>
-
-    <!-- ===== Galería ===== -->
-    <!--<section id="galeria">
-        
-        <div class="row g-3">
-            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="0">
-                <div class="galeria-img" data-bs-toggle="modal" data-bs-target="#lightboxModal"
-                    data-img="https://images.unsplash.com/photo-1622585824949-319653211121?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    style="background-image:url('https://images.unsplash.com/photo-1622585824949-319653211121?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-                </div>
-            </div>
-            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="100">
-                <div class="galeria-img" data-bs-toggle="modal" data-bs-target="#lightboxModal"
-                    data-img="https://images.unsplash.com/photo-1622586113797-0df2b2cc73da?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    style="background-image:url('https://images.unsplash.com/photo-1622586113797-0df2b2cc73da?q=80&w=464&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-                </div>
-            </div>
-            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="200">
-                <div class="galeria-img" data-bs-toggle="modal" data-bs-target="#lightboxModal"
-                    data-img="https://images.unsplash.com/photo-1622586292600-86158774001e?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    style="background-image:url('https://images.unsplash.com/photo-1622586292600-86158774001e?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-                </div>
-            </div>
-            <div class="col-6 col-md-3" data-aos="zoom-in" data-aos-delay="300">
-                <div class="galeria-img" data-bs-toggle="modal" data-bs-target="#lightboxModal"
-                    data-img="https://images.unsplash.com/photo-1622586026330-c5fc5300b674?q=80&w=1664&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    style="background-image:url('https://images.unsplash.com/photo-1622586026330-c5fc5300b674?q=80&w=1664&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- Modal lightbox de galería -->
-    <!-- <div class="modal fade" id="lightboxModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content bg-transparent border-0">
-                <button type="button" class="btn-close btn-close-white ms-auto me-2 mt-2" data-bs-dismiss="modal"
-                    aria-label="Cerrar"></button>
-                <img id="lightbox-img" src="" alt="Foto" class="img-fluid rounded">
-            </div>
-        </div>
-    </div> -->
 
     <!-- ===== Detalles de la fiesta ===== -->
     <section>
@@ -628,15 +523,16 @@
                 <div class="modal-body">
                     <form id="cancion-form" class="row g-3">
                         <div class="col-12">
-                            <input type="text" class="form-control" id="cancion-nombre" placeholder="Tu nombre">
+                            <input type="text" class="form-control" id="cancion-nombre" placeholder="Tu nombre" maxlength="100">
                         </div>
                         <div class="col-12">
                             <input type="text" class="form-control" id="cancion-tema"
-                                placeholder="Nombre de la canción / artista" required>
+                                placeholder="Nombre de la canción / artista" maxlength="150" required>
                         </div>
                         <div class="col-12 text-center">
-                            <button type="submit" class="btn btn-rose">Enviar sugerencia</button>
+                            <button type="submit" class="btn btn-rose" id="cancion-btn">Enviar sugerencia</button>
                         </div>
+                        <div class="col-12" id="cancion-msg"></div>
                     </form>
                 </div>
             </div>
@@ -652,7 +548,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body text-center">
-                    <!-- EDITAR: código de vestimenta -->
                     <p class="mb-2 fw-bold">Elegante</p>
                     <p>Evitar el color rosa, reservado para la festejada.</p>
                 </div>
@@ -669,7 +564,6 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- EDITAR: información adicional -->
                     <ul class="mb-0">
                         <li>Evitar vestimenta y/o accesorios de color rosa</li>
                     </ul>
@@ -697,9 +591,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body text-center">
-                    <!-- EDITAR: datos de transferencia / lista de regalos -->
-                    <p class="mb-1">Alias: <strong>mili.mis.xv</strong></p>
-                    <p class="mb-0">Nombre: <strong>Milagros</strong></p>
+                    <p class="mb-1">Alias: <strong>mili.quince.tqm</strong></p>
+                    <p class="mb-0">Nombre: <strong>Milagros Orellana Abal</strong></p>
                 </div>
             </div>
         </div>
@@ -718,7 +611,67 @@
     <footer class="text-center py-4">
         <p class="font-script mb-1" style="font-size:1.8rem; color:#fff;">Milagros</p>
         <small>Mis 15 años &middot; 18 de Diciembre de 2026</small>
+        <div>
+            <a href="#admin" class="admin-link"><i class="bi bi-lock-fill me-1"></i>Admin</a>
+        </div>
     </footer>
+
+    <!-- ===== PANEL ADMIN (acceso: link del footer o tupagina.com/#admin) ===== -->
+    <div id="admin-panel">
+        <div class="admin-wrap">
+
+            <!-- Login -->
+            <div id="admin-login" class="admin-login">
+                <h3 class="font-script" style="font-size:2.4rem;">Panel privado</h3>
+                <form id="admin-login-form" class="mt-3">
+                    <input type="password" id="admin-pass" class="form-control mb-3" placeholder="Contraseña" required autocomplete="current-password">
+                    <button type="submit" class="btn btn-rose w-100" id="admin-login-btn">Ingresar</button>
+                    <div id="admin-login-msg" class="text-danger small mt-2"></div>
+                </form>
+                <button type="button" class="btn btn-link btn-sm mt-2" id="admin-cerrar-login">Volver a la invitación</button>
+            </div>
+
+            <!-- Datos -->
+            <div id="admin-data" style="display:none;">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 class="mb-0">Panel de Mili</h2>
+                    <div>
+                        <button class="btn btn-outline-secondary btn-sm me-1" id="admin-volver">Ver invitación</button>
+                        <button class="btn btn-rose btn-sm" id="admin-logout">Salir</button>
+                    </div>
+                </div>
+
+                <div class="admin-card">
+                    <h4>Confirmaciones</h4>
+                    <div>
+                        <span class="stat">Total: <strong id="stat-total">0</strong></span>
+                        <span class="stat">Asisten: <strong id="stat-si">0</strong></span>
+                        <span class="stat">No asisten: <strong id="stat-no">0</strong></span>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table admin-table">
+                            <thead>
+                                <tr><th>Nombre</th><th>Asistencia</th><th>Fecha</th><th></th></tr>
+                            </thead>
+                            <tbody id="tabla-rsvps"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="admin-card">
+                    <h4>Canciones sugeridas</h4>
+                    <div class="table-responsive">
+                        <table class="table admin-table">
+                            <thead>
+                                <tr><th>Canción / artista</th><th>De</th><th>Fecha</th><th></th></tr>
+                            </thead>
+                            <tbody id="tabla-canciones"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -729,32 +682,8 @@
         AOS.init({ duration: 800, easing: 'ease-in-out', once: false });
     </script>
 
-    <!-- Entrada con / sin música -->
-    <script>
-        function ingresar(conMusica) {
-            document.getElementById("entrada").classList.add("oculto");
-            const musica = document.getElementById("musica-fondo");
-            const toggleBtn = document.getElementById("toggle-musica");
-
-            if (conMusica) {
-                musica.play().catch(() => { });
-                toggleBtn.classList.remove("d-none");
-            }
-        }
-
-        document.getElementById("toggle-musica").addEventListener("click", function () {
-            const musica = document.getElementById("musica-fondo");
-            if (musica.paused) {
-                musica.play();
-            } else {
-                musica.pause();
-            }
-        });
-    </script>
-
     <!-- Cuenta regresiva -->
     <script>
-        // EDITAR: fecha y hora del evento
         const fechaEvento = new Date("2026-12-18T21:30:00").getTime();
         const countdownEl = document.getElementById("countdown");
 
@@ -784,48 +713,197 @@
     <script>
         document.getElementById("btn-agendar").addEventListener("click", function (e) {
             e.preventDefault();
-            // EDITAR: título, fecha/hora inicio y fin (formato AAAAMMDDTHHMMSS), y ubicación
             const titulo = encodeURIComponent("Fiesta de 15 años de Milagros");
-            const inicio = "20261114T200000";
-            const fin = "20261115T030000";
-            const ubicacion = encodeURIComponent("Salón Avril, Av. Pergamino 203");
+            const inicio = "20261218T213000";
+            const fin = "20261219T040000";
+            const ubicacion = encodeURIComponent("Recepciones Marc, Av. Perón 1160, Villa Sarmiento");
             const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${titulo}&dates=${inicio}/${fin}&location=${ubicacion}`;
             window.open(url, "_blank");
         });
     </script>
 
-    <!-- Galería lightbox -->
-    <script>
-        document.querySelectorAll(".galeria-img").forEach(function (img) {
-            img.addEventListener("click", function () {
-                document.getElementById("lightbox-img").src = this.getAttribute("data-img");
+    <!-- ===== Firebase (formularios + panel admin) ===== -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        import {
+            getFirestore, collection, addDoc, deleteDoc, doc,
+            serverTimestamp, onSnapshot, query, orderBy
+        } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+        import {
+            getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+        // EDITAR: pegá acá tu configuración de Firebase
+        const firebaseConfig = {
+    apiKey: "AIzaSyA00xoWgIyTbiy6Tqy6QFydiMgKlNRJQfI",
+    authDomain: "mili-26a14.firebaseapp.com",
+    projectId: "mili-26a14",
+    storageBucket: "mili-26a14.firebasestorage.app",
+    messagingSenderId: "306625440089",
+    appId: "1:306625440089:web:1ec1a04f2944bcf0f50448",
+    measurementId: "G-T24RYFQ0ZB"
+  };
+
+        // EDITAR: email del usuario admin creado en Authentication (debe coincidir con las reglas)
+        const ADMIN_EMAIL = "admin@mili15.com";
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const auth = getAuth(app);
+
+        const $ = (id) => document.getElementById(id);
+
+        function mensaje(el, texto, ok = true) {
+            el.innerHTML = `<div class="alert alert-${ok ? "success" : "danger"} py-2 mb-0">${texto}</div>`;
+        }
+
+        function formatFecha(ts) {
+            if (!ts || !ts.toDate) return "—";
+            return ts.toDate().toLocaleString("es-AR", { dateStyle: "short", timeStyle: "short" });
+        }
+
+        // ---------- Confirmación de asistencia ----------
+        $("rsvp-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const btn = $("rsvp-btn");
+            btn.disabled = true;
+            try {
+                await addDoc(collection(db, "rsvps"), {
+                    nombre: $("rsvp-nombre").value.trim(),
+                    asistencia: $("rsvp-asistencia").value,
+                    createdAt: serverTimestamp()
+                });
+                e.target.reset();
+                mensaje($("rsvp-msg"), "¡Gracias! Tu confirmación fue enviada 💛");
+            } catch (err) {
+                console.error(err);
+                mensaje($("rsvp-msg"), "No se pudo enviar. Probá de nuevo en un momento.", false);
+            } finally {
+                btn.disabled = false;
+            }
+        });
+
+        // ---------- Sugerir canción ----------
+        $("cancion-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const btn = $("cancion-btn");
+            btn.disabled = true;
+            try {
+                await addDoc(collection(db, "canciones"), {
+                    nombre: $("cancion-nombre").value.trim() || "Anónimo",
+                    tema: $("cancion-tema").value.trim(),
+                    createdAt: serverTimestamp()
+                });
+                e.target.reset();
+                mensaje($("cancion-msg"), "¡Gracias por tu sugerencia! 🎶");
+            } catch (err) {
+                console.error(err);
+                mensaje($("cancion-msg"), "No se pudo enviar. Probá de nuevo.", false);
+            } finally {
+                btn.disabled = false;
+            }
+        });
+
+        // ---------- Panel admin ----------
+        const panel = $("admin-panel");
+        let unsubRsvps = null;
+        let unsubCanciones = null;
+
+        function celda(texto) {
+            const td = document.createElement("td");
+            td.textContent = texto;
+            return td;
+        }
+
+        function celdaBorrar(coleccion, id) {
+            const td = document.createElement("td");
+            const b = document.createElement("button");
+            b.className = "btn btn-sm btn-outline-danger";
+            b.innerHTML = '<i class="bi bi-trash"></i>';
+            b.title = "Borrar";
+            b.addEventListener("click", async () => {
+                if (confirm("¿Borrar este registro?")) {
+                    try { await deleteDoc(doc(db, coleccion, id)); }
+                    catch (err) { alert("No se pudo borrar."); console.error(err); }
+                }
             });
-        });
-    </script>
+            td.appendChild(b);
+            return td;
+        }
 
-    <!-- Confirmación de asistencia vía WhatsApp -->
-    <script>
-        document.getElementById("rsvp-form").addEventListener("submit", function (e) {
+        function escucharDatos() {
+            unsubRsvps = onSnapshot(query(collection(db, "rsvps"), orderBy("createdAt", "desc")), (snap) => {
+                const tbody = $("tabla-rsvps");
+                tbody.innerHTML = "";
+                let si = 0, no = 0;
+                snap.forEach((d) => {
+                    const r = d.data();
+                    if (r.asistencia === "Sí, voy a estar") si++; else no++;
+                    const tr = document.createElement("tr");
+                    tr.append(celda(r.nombre), celda(r.asistencia), celda(formatFecha(r.createdAt)), celdaBorrar("rsvps", d.id));
+                    tbody.appendChild(tr);
+                });
+                $("stat-total").textContent = snap.size;
+                $("stat-si").textContent = si;
+                $("stat-no").textContent = no;
+            }, (err) => console.error(err));
+
+            unsubCanciones = onSnapshot(query(collection(db, "canciones"), orderBy("createdAt", "desc")), (snap) => {
+                const tbody = $("tabla-canciones");
+                tbody.innerHTML = "";
+                snap.forEach((d) => {
+                    const c = d.data();
+                    const tr = document.createElement("tr");
+                    tr.append(celda(c.tema), celda(c.nombre), celda(formatFecha(c.createdAt)), celdaBorrar("canciones", d.id));
+                    tbody.appendChild(tr);
+                });
+            }, (err) => console.error(err));
+        }
+
+        function dejarDeEscuchar() {
+            if (unsubRsvps) unsubRsvps();
+            if (unsubCanciones) unsubCanciones();
+            unsubRsvps = unsubCanciones = null;
+        }
+
+        function cerrarPanel() {
+            history.replaceState(null, "", location.pathname + location.search);
+            panel.classList.remove("visible");
+        }
+
+        function revisarHash() {
+            if (location.hash === "#admin") panel.classList.add("visible");
+            else panel.classList.remove("visible");
+        }
+        window.addEventListener("hashchange", revisarHash);
+        revisarHash();
+
+        onAuthStateChanged(auth, (user) => {
+            const logueado = user && user.email === ADMIN_EMAIL;
+            $("admin-login").style.display = logueado ? "none" : "block";
+            $("admin-data").style.display = logueado ? "block" : "none";
+            dejarDeEscuchar();
+            if (logueado) escucharDatos();
+        });
+
+        $("admin-login-form").addEventListener("submit", async (e) => {
             e.preventDefault();
-            const nombre = document.getElementById("rsvp-nombre").value;
-            const asistencia = document.getElementById("rsvp-asistencia").value;
-
-            // EDITAR: número de WhatsApp que recibe las confirmaciones
-            const numeroWhatsapp = "5491166744332";
-            const texto = `¡Hola! Confirmo mi asistencia a los XV años de Milagros.%0A%0ANombre: ${encodeURIComponent(nombre)}%0AAsistencia: ${encodeURIComponent(asistencia)}`;
-            window.open(`https://wa.me/${numeroWhatsapp}?text=${texto}`, "_blank");
+            const btn = $("admin-login-btn");
+            btn.disabled = true;
+            $("admin-login-msg").textContent = "";
+            try {
+                await signInWithEmailAndPassword(auth, ADMIN_EMAIL, $("admin-pass").value);
+                $("admin-pass").value = "";
+            } catch (err) {
+                $("admin-login-msg").textContent = "Contraseña incorrecta.";
+            } finally {
+                btn.disabled = false;
+            }
         });
 
-        document.getElementById("cancion-form").addEventListener("submit", function (e) {
-            e.preventDefault();
-            const nombre = document.getElementById("cancion-nombre").value || "Anónimo";
-            const tema = document.getElementById("cancion-tema").value;
-
-            // EDITAR: mismo número de WhatsApp que las confirmaciones
-            const numeroWhatsapp = "5491166744332";
-            const texto = `🎶 Sugerencia de canción para la fiesta de Milagros%0A%0ADe: ${encodeURIComponent(nombre)}%0ACanción: ${encodeURIComponent(tema)}`;
-            window.open(`https://wa.me/${numeroWhatsapp}?text=${texto}`, "_blank");
-        });
+        $("admin-logout").addEventListener("click", () => signOut(auth));
+        $("admin-volver").addEventListener("click", cerrarPanel);
+        $("admin-cerrar-login").addEventListener("click", cerrarPanel);
     </script>
 
 </body>
